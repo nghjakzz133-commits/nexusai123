@@ -471,11 +471,10 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--tex
 <body>
  
 <!-- Particle Canvas -->
-<!-- Canvas hiệu ứng hạt nền -->
 <canvas id="bg-canvas"></canvas>
 <div class="grid-overlay"></div>
  
-<!-- Định nghĩa gradient bằng SVG -->
+<!-- SVG gradient defs -->
 <svg width="0" height="0" style="position:absolute">
   <defs>
     <linearGradient id="grd" x1="0" y1="0" x2="1" y2="1">
@@ -493,87 +492,57 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--tex
   <div class="corner corner-bl"></div>
   <div class="corner corner-br"></div>
  
-  <!-- Dữ liệu hiển thị dạng nổi -->
-  <div class="float-data fd1">
-    THỜI_GIAN_HOẠT_ĐỘNG: 99.97% ▲<br>
-    NÚT_MẠNG: 2,048 ĐANG HOẠT ĐỘNG<br>
-    ĐỘ_TRỄ: 1.2ms
-  </div>
-
-  <div class="float-data fd2">
-    MÔ_HÌNH_AI: v4.1-turbo<br>
-    ĐỘ_CHÍNH_XÁC: 98.7%<br>
-    LẦN_ĐỒNG_BỘ_CUỐI: 00:00:01
-  </div>
-
-  <div class="float-data fd3">
-    XỬ_LÝ_TÍN_HIỆU: TRỰC TUYẾN<br>
-    NGUỒN_DỮ_LIỆU: 47 ĐANG HOẠT ĐỘNG<br>
-    CẢNH_BÁO: 3 ĐANG CHỜ
-  </div>
-
-  <div class="float-data fd4">
-    DANH_MỤC: ĐANG HOẠT ĐỘNG<br>
-    MỨC_RỦI_RO: THẤP<br>
-    THỜI_GIAN_CHẠY: 847 NGÀY 12 GIỜ
-  </div>
-
-  <div class="float-data fd5">
-    MÃ_HÓA: AES-256<br>
-    XÁC_THỰC: 2 LỚP<br>
-    TRẠNG_THÁI: AN TOÀN
-  </div>
-</div>
+  <!-- Floating data decorations -->
+  <div class="float-data fd1">SYS_UPTIME: 99.97% ▲<br>NODES: 2,048 ACTIVE<br>LATENCY: 1.2ms</div>
+  <div class="float-data fd2">AI_MODEL: v4.1-turbo<br>ACCURACY: 98.7%<br>LAST_SYNC: 00:00:01</div>
+  <div class="float-data fd3">SIGNAL_PROC: ONLINE<br>FEEDS: 47 ACTIVE<br>ALERTS: 3 PENDING</div>
+  <div class="float-data fd4">PORTFOLIO: LIVE<br>RISK_SCORE: LOW<br>UPTIME: 847d 12h</div>
+  <div class="float-data fd5">ENCRYPTION: AES-256<br>AUTH: 2-LAYER<br>STATUS: SECURED</div>
  
- <!-- Thanh trạng thái -->
-<div class="status-bar-top">
-  <div class="sbar-item">
-    <div class="sbar-dot"></div>
-    HỆ THỐNG AI NEXUS — ĐIỂM TRUY CẬP BẢO MẬT
-  </div>
-  <div class="sbar-right">
-    <span id="sys-clock">00:00:00</span>
-    <span>v2.4.1</span>
-    <span>🔒 ĐÃ MÃ HÓA</span>
-  </div>
-</div>
- 
-<div class="login-card">
-  <div class="logo-wrap">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
-        <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
-        <circle cx="12" cy="12" r="8" stroke-dasharray="4 2"/>
-      </svg>
-    </div>
-    <div class="logo-main">NEXUS AI</div>
-    <div class="logo-sub">Hệ thống phân tích sản phẩm thông minh</div>
-  </div>
- 
-  <div class="field-wrap">
-    <label class="field-label" for="f-user">ID truy cập</label>
-    <div class="mi-group">
-      <input class="field-input" type="text" id="f-user" placeholder="Nhập ID truy cập" autocomplete="off" spellcheck="false"/>
-    </div>
-  </div>
-
-  <div class="field-wrap">
-    <label class="field-label" for="f-pass">Khóa bảo mật</label>
-    <div class="mi-group">
-      <input class="field-input mi" type="password" id="f-pass" placeholder="••••••••••"/>
-      <button class="eye-btn" onclick="togglePass('f-pass',this)" type="button">👁</button>
+  <!-- Status bar -->
+  <div class="status-bar-top">
+    <div class="sbar-item"><div class="sbar-dot"></div>NEXUS AI SYSTEM — SECURE ACCESS POINT</div>
+    <div class="sbar-right">
+      <span id="sys-clock">00:00:00</span>
+      <span>v2.4.1</span>
+      <span>🔒 ENCRYPTED</span>
     </div>
   </div>
  
-  <button class="login-btn" onclick="doLogin()">TRUY CẬP HỆ THỐNG</button>
-  <div class="login-err" id="login-err">
-    ⚠ &nbsp;Thông tin không hợp lệ — từ chối truy cập
+  <div class="login-card">
+    <div class="logo-wrap">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+          <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
+          <circle cx="12" cy="12" r="8" stroke-dasharray="4 2"/>
+        </svg>
+      </div>
+      <div class="logo-main">NEXUS AI</div>
+      <div class="logo-sub">Product Intelligence System</div>
+    </div>
+ 
+    <div class="field-wrap">
+      <label class="field-label" for="f-user">Access ID</label>
+      <div class="mi-group">
+        <input class="field-input" type="text" id="f-user" placeholder="Enter your access ID" autocomplete="off" spellcheck="false"/>
+      </div>
+    </div>
+    <div class="field-wrap">
+      <label class="field-label" for="f-pass">Security Key</label>
+      <div class="mi-group">
+        <input class="field-input mi" type="password" id="f-pass" placeholder="••••••••••" id="f-pass"/>
+        <button class="eye-btn" onclick="togglePass('f-pass',this)" type="button">👁</button>
+      </div>
+    </div>
+ 
+    <button class="login-btn" onclick="doLogin()">ACCESS SYSTEM</button>
+    <div class="login-err" id="login-err">⚠ &nbsp;Invalid credentials — access denied</div>
   </div>
 </div>
  
-<!-- ===== BẢNG ĐIỀU KHIỂN ===== -->
+<!-- ===== DASHBOARD ===== -->
 <div id="dash-screen">
   <div class="topnav">
     <div class="tnl">
@@ -581,164 +550,106 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--tex
       <div class="tn-ver">v2.4.1</div>
     </div>
     <div class="tnr">
-      <div class="online-pill">
-        <div class="dp"></div>
-        TẤT CẢ HỆ THỐNG HOẠT ĐỘNG
-      </div>
-
+      <div class="online-pill"><div class="dp"></div>ALL SYSTEMS ONLINE</div>
       <div class="user-chip">
         <div class="av" id="nav-av">AD</div>
         <span id="nav-uname" style="font-size:12px;color:rgba(255,255,255,.6)">admin</span>
-        <span id="nav-role" style="font-size:10px;color:rgba(99,102,241,.7);font-family:'JetBrains Mono',monospace;margin-left:4px">
-          [QUẢN TRỊ]
-        </span>
+        <span id="nav-role" style="font-size:10px;color:rgba(99,102,241,.7);font-family:'JetBrains Mono',monospace;margin-left:4px">[ADMIN]</span>
       </div>
-
-      <button class="nav-btn accent" id="btn-add-prod" onclick="openAddProd()">+ Sản phẩm</button>
-      <button class="nav-btn" id="btn-accts" onclick="openAccounts()" style="display:none">⚙ Tài khoản</button>
-      <button class="nav-btn danger" onclick="doLogout()">Đăng xuất</button>
+      <button class="nav-btn accent" id="btn-add-prod" onclick="openAddProd()">+ Product</button>
+      <button class="nav-btn" id="btn-accts" onclick="openAccounts()" style="display:none">⚙ Accounts</button>
+      <button class="nav-btn danger" onclick="doLogout()">Sign out</button>
     </div>
   </div>
  
-  <div class="ticker-bar">
-    <div class="ticker-inner" id="ticker-inner"></div>
-  </div>
+  <div class="ticker-bar"><div class="ticker-inner" id="ticker-inner"></div></div>
  
   <div class="dash-body">
     <div class="hstats">
-      <div class="hsc">
-        <div class="hsc-glow" style="background:#6366f1"></div>
-        <div class="hsc-lbl">Tổng sản phẩm</div>
-        <div class="hsc-val" id="hs-n">20</div>
-        <div class="hsc-sub">Module đang hoạt động</div>
-      </div>
-
-      <div class="hsc">
-        <div class="hsc-glow" style="background:#06b6d4"></div>
-        <div class="hsc-lbl">Tỷ lệ thắng TB</div>
-        <div class="hsc-val" id="hs-avg">—</div>
-        <div class="hsc-sub">Toàn bộ sản phẩm</div>
-      </div>
-
-      <div class="hsc">
-        <div class="hsc-glow" style="background:#10b981"></div>
-        <div class="hsc-lbl">Hiệu suất cao nhất</div>
-        <div class="hsc-val" id="hs-top" style="font-size:13px;padding-top:5px">—</div>
-        <div class="hsc-sub">Tỷ lệ thắng cao nhất</div>
-      </div>
-
-      <div class="hsc">
-        <div class="hsc-glow" style="background:#f59e0b"></div>
-        <div class="hsc-lbl">Độ tin cậy AI</div>
-        <div class="hsc-val" id="hs-conf">98.7%</div>
-        <div class="hsc-sub">Độ chính xác mô hình</div>
-      </div>
+      <div class="hsc"><div class="hsc-glow" style="background:#6366f1"></div><div class="hsc-lbl">Total Products</div><div class="hsc-val" id="hs-n">20</div><div class="hsc-sub">Active modules</div></div>
+      <div class="hsc"><div class="hsc-glow" style="background:#06b6d4"></div><div class="hsc-lbl">Avg Win Rate</div><div class="hsc-val" id="hs-avg">—</div><div class="hsc-sub">All products</div></div>
+      <div class="hsc"><div class="hsc-glow" style="background:#10b981"></div><div class="hsc-lbl">Top Performer</div><div class="hsc-val" id="hs-top" style="font-size:13px;padding-top:5px">—</div><div class="hsc-sub">Highest win rate</div></div>
+      <div class="hsc"><div class="hsc-glow" style="background:#f59e0b"></div><div class="hsc-lbl">AI Confidence</div><div class="hsc-val" id="hs-conf">98.7%</div><div class="hsc-sub">Model accuracy</div></div>
     </div>
  
     <div class="sh" style="margin-bottom:10px">
-      <div class="st">
-        <div class="stl"></div>
-        NHẬT KÝ HỆ THỐNG (TRỰC TIẾP)
-      </div>
+      <div class="st"><div class="stl"></div>LIVE SYSTEM LOG</div>
     </div>
-
     <div class="logbox" id="logbox"></div>
  
     <div class="sh">
-      <div class="st">
-        <div class="stl"></div>
-        MODULE SẢN PHẨM
-      </div>
+      <div class="st"><div class="stl"></div>PRODUCT MODULES</div>
       <span style="font-size:10px;color:rgba(255,255,255,.25);font-family:'JetBrains Mono',monospace" id="prod-count-label"></span>
     </div>
-
     <div id="pgrid"></div>
   </div>
 </div>
-<!-- ===== MODAL THÊM SẢN PHẨM ===== -->
+ 
+<!-- ===== ADD PRODUCT MODAL ===== -->
 <div class="modal-bg" id="modal-add">
-  <div class="mbox">
-    <div class="mtitle">TẠO MODULE SẢN PHẨM MỚI</div>
-
-    <div class="mlb">Biểu tượng</div>
-    <div class="erow" id="ep">
-      <span class="eo on" onclick="pickE(this,'🤖')">🤖</span>
-      <span class="eo" onclick="pickE(this,'⚡')">⚡</span>
-      <span class="eo" onclick="pickE(this,'🔮')">🔮</span>
-      <span class="eo" onclick="pickE(this,'🎯')">🎯</span>
-      <span class="eo" onclick="pickE(this,'💎')">💎</span>
-      <span class="eo" onclick="pickE(this,'🚀')">🚀</span>
-      <span class="eo" onclick="pickE(this,'🌐')">🌐</span>
-      <span class="eo" onclick="pickE(this,'🔥')">🔥</span>
-      <span class="eo" onclick="pickE(this,'📡')">📡</span>
-      <span class="eo" onclick="pickE(this,'🧬')">🧬</span>
-      <span class="eo" onclick="pickE(this,'🛡️')">🛡️</span>
-      <span class="eo" onclick="pickE(this,'💹')">💹</span>
-      <span class="eo" onclick="pickE(this,'🌊')">🌊</span>
-      <span class="eo" onclick="pickE(this,'🏆')">🏆</span>
-    </div>
-
-    <div class="mlb">Tên sản phẩm</div>
-    <input class="mi" id="p-name" placeholder="Ví dụ: AlphaSignal Pro"/>
-
-    <div class="mlb">Mô tả ngắn</div>
-    <input class="mi" id="p-desc" placeholder="Ví dụ: Công cụ phân tích tín hiệu bằng AI"/>
-
-    <div class="mlb">Danh mục</div>
-    <input class="mi" id="p-tag" placeholder="Ví dụ: Trading, Phân tích, Bot..."/>
-
-    <div class="mbtns">
-      <button class="mbtn-save" onclick="saveProd()">LƯU MODULE</button>
-      <button class="mbtn-cancel" onclick="closeAddProd()">Hủy</button>
-    </div>
+<div class="mbox">
+  <div class="mtitle">NEW PRODUCT MODULE</div>
+  <div class="mlb">Icon</div>
+  <div class="erow" id="ep">
+    <span class="eo on" onclick="pickE(this,'🤖')">🤖</span>
+    <span class="eo" onclick="pickE(this,'⚡')">⚡</span>
+    <span class="eo" onclick="pickE(this,'🔮')">🔮</span>
+    <span class="eo" onclick="pickE(this,'🎯')">🎯</span>
+    <span class="eo" onclick="pickE(this,'💎')">💎</span>
+    <span class="eo" onclick="pickE(this,'🚀')">🚀</span>
+    <span class="eo" onclick="pickE(this,'🌐')">🌐</span>
+    <span class="eo" onclick="pickE(this,'🔥')">🔥</span>
+    <span class="eo" onclick="pickE(this,'📡')">📡</span>
+    <span class="eo" onclick="pickE(this,'🧬')">🧬</span>
+    <span class="eo" onclick="pickE(this,'🛡️')">🛡️</span>
+    <span class="eo" onclick="pickE(this,'💹')">💹</span>
+    <span class="eo" onclick="pickE(this,'🌊')">🌊</span>
+    <span class="eo" onclick="pickE(this,'🏆')">🏆</span>
+  </div>
+  <div class="mlb">Product Name</div>
+  <input class="mi" id="p-name" placeholder="e.g. AlphaSignal Pro"/>
+  <div class="mlb">Short Description</div>
+  <input class="mi" id="p-desc" placeholder="e.g. AI-powered signal analysis engine"/>
+  <div class="mlb">Category Tag</div>
+  <input class="mi" id="p-tag" placeholder="e.g. Trading, Analytics, Bot..."/>
+  <div class="mbtns">
+    <button class="mbtn-save" onclick="saveProd()">SAVE MODULE</button>
+    <button class="mbtn-cancel" onclick="closeAddProd()">Cancel</button>
   </div>
 </div>
+</div>
  
-<!-- ===== MODAL QUẢN LÝ TÀI KHOẢN ===== -->
+<!-- ===== ACCOUNT MANAGEMENT MODAL ===== -->
 <div class="modal-bg" id="modal-acc">
-  <div class="mbox" style="max-width:520px">
-    <div class="mtitle">⚙ QUẢN LÝ TÀI KHOẢN</div>
+<div class="mbox" style="max-width:520px">
+  <div class="mtitle">⚙ ACCOUNT MANAGEMENT</div>
  
-    <div class="sh" style="margin-bottom:10px">
-      <div class="st">
-        <div class="stl"></div>
-        TÀI KHOẢN ĐANG HOẠT ĐỘNG
-      </div>
-    </div>
-
-    <div class="acc-list" id="acc-list"></div>
- 
-    <div style="border-top:1px solid rgba(255,255,255,.07);margin-top:20px;padding-top:20px">
-      <div class="st" style="margin-bottom:14px">
-        <div class="stl"></div>
-        TẠO TÀI KHOẢN MỚI
-      </div>
-
-      <div class="mlb">Tên đăng nhập</div>
-      <input class="mi" id="new-user" placeholder="Nhập tên đăng nhập" autocomplete="off" spellcheck="false"/>
-
-      <div class="mlb">Mật khẩu</div>
-      <div class="mi-group">
-        <input class="mi" type="password" id="new-pass" placeholder="Tối thiểu 6 ký tự" oninput="checkStrength(this.value)"/>
-        <button class="eye-btn" onclick="togglePass('new-pass',this)" type="button">👁</button>
-      </div>
-
-      <div class="pass-strength">
-        <div class="ps-fill" id="ps-fill" style="width:0%;background:#ef4444"></div>
-      </div>
-
-      <div class="mlb">Vai trò</div>
-      <select class="role-select" id="new-role">
-        <option value="viewer">Người xem — chỉ xem</option>
-        <option value="editor">Biên tập — xem + phân tích lại</option>
-      </select>
-    </div>
-
-    <div class="mbtns">
-      <button class="mbtn-save" onclick="createAccount()">TẠO TÀI KHOẢN</button>
-      <button class="mbtn-cancel" onclick="closeAccounts()">Đóng</button>
-    </div>
+  <div class="sh" style="margin-bottom:10px">
+    <div class="st"><div class="stl"></div>ACTIVE ACCOUNTS</div>
   </div>
+  <div class="acc-list" id="acc-list"></div>
+ 
+  <div style="border-top:1px solid rgba(255,255,255,.07);margin-top:20px;padding-top:20px">
+    <div class="st" style="margin-bottom:14px"><div class="stl"></div>CREATE NEW ACCOUNT</div>
+    <div class="mlb">Username</div>
+    <input class="mi" id="new-user" placeholder="Enter username" autocomplete="off" spellcheck="false"/>
+    <div class="mlb">Password</div>
+    <div class="mi-group">
+      <input class="mi" type="password" id="new-pass" placeholder="Min 6 characters" oninput="checkStrength(this.value)"/>
+      <button class="eye-btn" onclick="togglePass('new-pass',this)" type="button">👁</button>
+    </div>
+    <div class="pass-strength"><div class="ps-fill" id="ps-fill" style="width:0%;background:#ef4444"></div></div>
+    <div class="mlb">Role</div>
+    <select class="role-select" id="new-role">
+      <option value="viewer">Viewer — read only</option>
+      <option value="editor">Editor — view + re-analyze</option>
+    </select>
+  </div>
+  <div class="mbtns">
+    <button class="mbtn-save" onclick="createAccount()">CREATE ACCOUNT</button>
+    <button class="mbtn-cancel" onclick="closeAccounts()">Close</button>
+  </div>
+</div>
 </div>
  
 <!-- Toast -->
@@ -746,92 +657,54 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--tex
  
 <script>
 /* ===================================================
-   HIỆU ỨNG NỀN HẠT (PARTICLE BACKGROUND)
+   PARTICLE BACKGROUND
 =================================================== */
 (function(){
   const c=document.getElementById('bg-canvas');
   const ctx=c.getContext('2d');
   let W,H,pts=[];
-
-  // Resize canvas theo kích thước màn hình
-  function resize(){
-    W=c.width=innerWidth;
-    H=c.height=innerHeight;
-  }
-
-  resize();
-  window.addEventListener('resize',()=>{
-    resize();
-    init();
-  });
-
-  // Hàm random trong khoảng [a, b]
-  function rnd(a,b){
-    return a+Math.random()*(b-a);
-  }
-
-  // Khởi tạo các hạt
+  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;}
+  resize();window.addEventListener('resize',()=>{resize();init();});
+  function rnd(a,b){return a+Math.random()*(b-a);}
   function init(){
     pts=[];
-    const n=Math.min(80,Math.floor(W*H/14000)); // số lượng hạt theo diện tích
-
+    const n=Math.min(80,Math.floor(W*H/14000));
     for(let i=0;i<n;i++){
       pts.push({
-        x:rnd(0,W), // vị trí X
-        y:rnd(0,H), // vị trí Y
-        vx:rnd(-.3,.3), // vận tốc X
-        vy:rnd(-.3,.3), // vận tốc Y
-        r:rnd(1,2.5), // bán kính
-        a:rnd(0,.6), // độ mờ (alpha)
-        col:Math.random()<.6 ? '99,102,241' : '6,182,212' // màu
+        x:rnd(0,W),y:rnd(0,H),
+        vx:rnd(-.3,.3),vy:rnd(-.3,.3),
+        r:rnd(1,2.5),
+        a:rnd(0,.6),
+        col:Math.random()<.6?'99,102,241':'6,182,212'
       });
     }
   }
-
   init();
-
-  // Vẽ animation
   function draw(){
     ctx.clearRect(0,0,W,H);
-
     for(let i=0;i<pts.length;i++){
       const p=pts[i];
-
-      // Cập nhật vị trí
-      p.x+=p.vx;
-      p.y+=p.vy;
-
-      // Đảo hướng khi chạm biên
+      p.x+=p.vx;p.y+=p.vy;
       if(p.x<0||p.x>W)p.vx*=-1;
       if(p.y<0||p.y>H)p.vy*=-1;
-
-      // Vẽ hạt
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
       ctx.fillStyle=`rgba(${p.col},${p.a})`;
       ctx.fill();
-
-      // Vẽ đường nối giữa các hạt gần nhau
       for(let j=i+1;j<pts.length;j++){
         const q=pts[j];
-        const dx=p.x-q.x;
-        const dy=p.y-q.y;
+        const dx=p.x-q.x,dy=p.y-q.y;
         const d=Math.sqrt(dx*dx+dy*dy);
-
         if(d<120){
           ctx.beginPath();
-          ctx.moveTo(p.x,p.y);
-          ctx.lineTo(q.x,q.y);
+          ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
           ctx.strokeStyle=`rgba(99,102,241,${.12*(1-d/120)})`;
-          ctx.lineWidth=.5;
-          ctx.stroke();
+          ctx.lineWidth=.5;ctx.stroke();
         }
       }
     }
-
-    requestAnimationFrame(draw); // lặp animation
+    requestAnimationFrame(draw);
   }
-
   draw();
 })();
  
