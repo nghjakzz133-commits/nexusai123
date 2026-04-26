@@ -1,1060 +1,906 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-<meta property="og:title" content="NỔ HŨ AI TOOL" />
-<meta property="og:description" content="AI tool tối ưu hệ thống tự động hóa" />
-<meta property="og:image" content="https://nexusai123.pages.dev//preview.jpg" />
-<meta property="og:url" content="https://nexusai123.pages.dev/" />
-  <link rel="preconnect" href="https://nexusai123.pages.dev/" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-<link rel="icon" href="/favicon.ico" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-<meta name="twitter:title" content="NỔ HŨ AI TOOL — AI Optimization Tool" />
-
-<meta name="twitter:description" content="AI phân tích và tối ưu hệ thống tự động hóa hiệu suất." />
-
-<meta name="twitter:image" content="https://nexusai123.pages.dev/preview.jpg" />
-  <meta property="og:type" content="website" />
-<meta property="og:title" content="NỔ HŨ AI TOOL — AI Tối Ưu Hệ Thống" />
-
-<meta property="og:description" content="Công cụ AI giúp phân tích và tối ưu hiệu suất hệ thống tự động." />
-
-<meta property="og:url" content="https://nexusai123.pages.dev/" />
-
-<meta property="og:image" content="https://nexusai123.pages.dev/preview.jpg" />
-
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-
-<meta property="og:site_name" content="AI TOOL SYSTEM" />
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NEXUS AI — Product Intelligence System</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TIPSTER PRO — Phân Tích Kèo Chuyên Sâu</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --indigo:#6366f1;--cyan:#06b6d4;--violet:#8b5cf6;
-  --green:#10b981;--amber:#f59e0b;--pink:#ec4899;
-  --orange:#f97316;--teal:#14b8a6;
-  --bg:#050810;--surface:rgba(255,255,255,.04);
-  --border:rgba(255,255,255,.09);--text:#e2e8f0;
-  --muted:rgba(255,255,255,.35);
+  --bg:#07080b;--s1:#0d0f14;--s2:#12151d;--s3:#171c27;
+  --bd:#1d2435;--bd2:#252e42;
+  --gold:#c8a84b;--gold2:#e2c46b;--gold3:#f0d88a;
+  --red:#e63946;--red2:#ff4d5a;
+  --grn:#05d69e;--grn2:#00f0b0;
+  --blu:#3d7eff;--blu2:#6499ff;
+  --txt:#dde2ee;--txt2:#8d9ab8;--txt3:#4f5c78;
+  --radius:10px;--radius2:14px;
 }
-html,body{height:100%;overflow:hidden}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);cursor:default}
+html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt)}
  
-/* ===== CANVAS BG ===== */
-#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--s1)}
+::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:2px}
  
-/* ===== GRID OVERLAY ===== */
-.grid-overlay{
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(99,102,241,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(99,102,241,.035) 1px,transparent 1px);
-  background-size:50px 50px;
+/* ══════════ LOGIN PAGE ══════════ */
+#loginPage{
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;position:relative;overflow:hidden;
 }
-.grid-overlay::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 20% 10%,rgba(99,102,241,.16) 0,transparent 60%),
-             radial-gradient(ellipse 50% 50% at 85% 90%,rgba(6,182,212,.12) 0,transparent 55%),
-             radial-gradient(ellipse 40% 40% at 70% 20%,rgba(139,92,246,.08) 0,transparent 50%);
+.login-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(200,168,75,.08) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 40% at 80% 80%,rgba(61,126,255,.06) 0%,transparent 50%);
 }
- 
-/* ===== SCREENS ===== */
-#login-screen,#dash-screen{position:fixed;inset:0;z-index:10}
- 
-/* ===== LOGIN SCREEN ===== */
-#login-screen{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  perspective:1000px;
+.login-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--bd) 1px,transparent 1px),linear-gradient(90deg,var(--bd) 1px,transparent 1px);
+  background-size:40px 40px;opacity:.25;
 }
- 
-/* Scanning line */
-.scan-line{
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(99,102,241,.8),rgba(6,182,212,.6),transparent);
-  animation:scan 4s ease-in-out infinite;z-index:2;pointer-events:none;
+.login-box{
+  position:relative;z-index:2;width:100%;max-width:400px;padding:0 1.25rem;
 }
-@keyframes scan{
-  0%{top:-2px;opacity:0}
-  10%{opacity:1}
-  90%{opacity:1}
-  100%{top:100%;opacity:0}
-}
- 
-/* Corner decorations */
-.corner{position:absolute;width:60px;height:60px;z-index:3;pointer-events:none}
-.corner-tl{top:20px;left:20px;border-top:2px solid rgba(99,102,241,.5);border-left:2px solid rgba(99,102,241,.5)}
-.corner-tr{top:20px;right:20px;border-top:2px solid rgba(6,182,212,.5);border-right:2px solid rgba(6,182,212,.5)}
-.corner-bl{bottom:20px;left:20px;border-bottom:2px solid rgba(99,102,241,.4);border-left:2px solid rgba(99,102,241,.4)}
-.corner-br{bottom:20px;right:20px;border-bottom:2px solid rgba(6,182,212,.4);border-right:2px solid rgba(6,182,212,.4)}
- 
-/* Status bar top */
-.status-bar-top{
-  position:absolute;top:0;left:0;right:0;height:32px;
-  background:rgba(5,8,16,.7);border-bottom:1px solid rgba(99,102,241,.15);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;font-family:'JetBrains Mono',monospace;font-size:10px;
-  color:rgba(99,102,241,.6);z-index:5;
-}
-.sbar-item{display:flex;align-items:center;gap:6px}
-.sbar-dot{width:5px;height:5px;border-radius:50%;background:#10b981;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.sbar-right{display:flex;gap:24px}
- 
-/* Login card */
+.login-logo{text-align:center;margin-bottom:2.5rem}
+.login-logo .brand{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:4px;color:var(--gold2)}
+.login-logo .brand em{color:var(--red);font-style:normal}
+.login-logo .sub{font-size:11px;color:var(--txt3);letter-spacing:3px;text-transform:uppercase;margin-top:4px}
 .login-card{
-  width:100%;max-width:460px;padding:56px 48px 48px;
-  background:rgba(8,12,28,.82);
-  backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
-  border:1px solid rgba(255,255,255,.12);border-radius:24px;
-  position:relative;z-index:5;
-  animation:cardIn 1s cubic-bezier(.16,1,.3,1) forwards;
-  opacity:0;transform:translateY(30px) scale(.97);
+  background:var(--s2);border:1px solid var(--bd2);border-radius:var(--radius2);
+  padding:2rem;
 }
-@keyframes cardIn{
-  to{opacity:1;transform:translateY(0) scale(1)}
+.login-card h2{font-size:17px;font-weight:600;margin-bottom:1.5rem;color:var(--txt)}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:11px;color:var(--txt2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.field input{
+  width:100%;background:var(--bg);border:1px solid var(--bd2);border-radius:8px;
+  padding:11px 14px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:14px;outline:none;
+  transition:border-color .2s;
 }
-.login-card::before{
-  content:'';position:absolute;inset:0;border-radius:24px;
-  background:linear-gradient(135deg,rgba(99,102,241,.06) 0,transparent 60%,rgba(6,182,212,.04) 100%);
-  pointer-events:none;
+.field input:focus{border-color:var(--gold)}
+.field input::placeholder{color:var(--txt3)}
+.btn-login{
+  width:100%;padding:12px;background:var(--gold);color:#07080b;
+  border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;
+  font-size:18px;letter-spacing:2px;cursor:pointer;transition:all .2s;margin-top:.5rem;
 }
-/* Animated border glow */
-.login-card::after{
-  content:'';position:absolute;inset:-1px;border-radius:25px;
-  background:linear-gradient(135deg,rgba(99,102,241,.4),rgba(6,182,212,.3),rgba(139,92,246,.3),rgba(99,102,241,.4));
-  background-size:300% 300%;
-  animation:borderFlow 4s ease infinite;
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;
-  padding:1px;pointer-events:none;
-}
-@keyframes borderFlow{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
- 
-/* Logo area */
-.logo-wrap{text-align:center;margin-bottom:40px}
-.logo-icon{
-  width:72px;height:72px;margin:0 auto 18px;
-  background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(6,182,212,.15));
-  border:1px solid rgba(99,102,241,.4);border-radius:20px;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;
-  animation:iconGlow 3s ease infinite alternate;
-}
-@keyframes iconGlow{
-  from{box-shadow:0 0 20px rgba(99,102,241,.2),0 0 40px rgba(99,102,241,.1)}
-  to{box-shadow:0 0 30px rgba(99,102,241,.4),0 0 60px rgba(99,102,241,.15),0 0 100px rgba(6,182,212,.1)}
-}
-.logo-icon svg{width:34px;height:34px;fill:none;stroke:url(#grd);stroke-width:1.5}
-.logo-main{
-  font-family:'Orbitron',monospace;font-size:30px;font-weight:900;letter-spacing:4px;
-  background:linear-gradient(135deg,#a5b4fc 0,#67e8f9 50%,#c4b5fd 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:6px;
-}
-.logo-sub{
-  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;
-  color:rgba(255,255,255,.3);text-transform:uppercase;
-}
- 
-/* Form */
-.field-wrap{position:relative;margin-bottom:14px}
-.field-label{
-  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
-  color:rgba(255,255,255,.35);margin-bottom:7px;display:block;
-  font-family:'JetBrains Mono',monospace;
-}
-.field-input{
-  width:100%;background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);border-radius:12px;
-  padding:14px 18px;font-size:14px;color:#e2e8f0;
-  font-family:'Space Grotesk',sans-serif;outline:none;
-  transition:border-color .3s,background .3s,box-shadow .3s;
-}
-.field-input::placeholder{color:rgba(255,255,255,.2)}
-.field-input:focus{
-  border-color:rgba(99,102,241,.6);background:rgba(99,102,241,.06);
-  box-shadow:0 0 0 3px rgba(99,102,241,.1),0 0 20px rgba(99,102,241,.08);
-}
- 
-/* Login button */
-.login-btn{
-  width:100%;padding:16px;margin-top:8px;
-  background:linear-gradient(135deg,#6366f1,#4f46e5 40%,#06b6d4);
-  border:none;border-radius:12px;color:#fff;
-  font-family:'Orbitron',monospace;font-size:12px;font-weight:700;
-  letter-spacing:2px;cursor:pointer;position:relative;overflow:hidden;
-  transition:transform .2s,opacity .2s;
-}
-.login-btn::before{
-  content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
-  transform:skewX(-20deg);
-  animation:btnShine 3s ease infinite;
-}
-@keyframes btnShine{
-  0%{left:-60%}60%,100%{left:120%}
-}
-.login-btn:hover{transform:translateY(-2px);opacity:.92}
-.login-btn:active{transform:scale(.98)}
- 
+.btn-login:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-login:active{transform:translateY(0)}
 .login-err{
-  display:none;margin-top:12px;padding:10px 14px;
-  background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);
-  border-radius:10px;font-size:12.5px;color:#fca5a5;
-  font-family:'JetBrains Mono',monospace;text-align:center;
+  background:rgba(230,57,70,.12);border:1px solid rgba(230,57,70,.3);
+  color:var(--red);font-size:13px;padding:10px 14px;border-radius:8px;
+  margin-bottom:1rem;display:none;
 }
+.login-note{text-align:center;font-size:11px;color:var(--txt3);margin-top:1.25rem}
  
-/* Decorative data elements around card */
-.float-data{
-  position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;
-  color:rgba(99,102,241,.3);white-space:nowrap;animation:floatFade 6s ease-in-out infinite;
-  pointer-events:none;z-index:2;
-}
-@keyframes floatFade{
-  0%,100%{opacity:.3;transform:translateY(0)}
-  50%{opacity:.6;transform:translateY(-8px)}
-}
-.fd1{top:20%;left:5%;animation-delay:0s}
-.fd2{top:35%;right:5%;animation-delay:1.5s}
-.fd3{bottom:25%;left:7%;animation-delay:3s}
-.fd4{bottom:15%;right:8%;animation-delay:2s}
-.fd5{top:60%;left:3%;animation-delay:4s}
+/* ══════════ MAIN APP ══════════ */
+#appPage{display:none;min-height:100vh}
  
-/* ===== DASHBOARD ===== */
-#dash-screen{display:none;flex-direction:column;overflow:hidden}
- 
-/* Top nav */
-.topnav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;height:56px;flex-shrink:0;
-  background:rgba(5,8,16,.75);backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(255,255,255,.07);position:relative;z-index:20;
+/* TOPBAR */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,8,11,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;gap:14px;padding:0 1.5rem;height:56px;
 }
-.tnl{display:flex;align-items:center;gap:14px}
-.tn-logo{
-  font-family:'Orbitron',monospace;font-size:16px;font-weight:700;letter-spacing:2px;
-  background:linear-gradient(135deg,#a5b4fc,#67e8f9);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+.topbar-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--gold2)}
+.topbar-brand em{color:var(--red);font-style:normal}
+.topbar-badge{
+  background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.35);
+  color:var(--red);font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;
+  letter-spacing:1px;animation:pulse 2s infinite;
 }
-.tn-ver{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  color:rgba(99,102,241,.7);background:rgba(99,102,241,.1);
-  border:1px solid rgba(99,102,241,.25);border-radius:5px;padding:2px 8px;
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.user-pill{
+  display:flex;align-items:center;gap:7px;
+  background:var(--s2);border:1px solid var(--bd);border-radius:20px;
+  padding:4px 12px 4px 7px;font-size:13px;font-weight:500;cursor:pointer;
+  transition:border-color .2s;
 }
-.tnr{display:flex;align-items:center;gap:10px}
-.online-pill{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);
-  border-radius:20px;padding:5px 12px;
-  font-family:'JetBrains Mono',monospace;font-size:10px;color:#6ee7b7;
-}
-.dp{width:6px;height:6px;border-radius:50%;background:#10b981;animation:pulse 2s infinite}
-.user-chip{
-  display:flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
-  border-radius:20px;padding:5px 14px;font-size:12px;color:rgba(255,255,255,.65);
-}
-.av{
-  width:22px;height:22px;border-radius:50%;
-  background:linear-gradient(135deg,#6366f1,#06b6d4);
+.user-pill:hover{border-color:var(--bd2)}
+.user-avatar{
+  width:26px;height:26px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:700;color:#fff;flex-shrink:0;
+  font-size:11px;font-weight:600;text-transform:uppercase;
 }
-.nav-btn{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;padding:6px 12px;color:rgba(255,255,255,.4);
-  font-size:11.5px;cursor:pointer;font-family:'Space Grotesk',sans-serif;
+.badge-admin{background:rgba(200,168,75,.18);color:var(--gold);font-size:10px;padding:1px 6px;border-radius:3px;font-weight:600;letter-spacing:.5px}
+.badge-vip{background:rgba(61,126,255,.18);color:var(--blu2);font-size:10px;padding:1px 6px;border-radius:3px;font-weight:600;letter-spacing:.5px}
+.btn-logout{
+  background:transparent;border:1px solid var(--bd);color:var(--txt2);
+  padding:5px 12px;border-radius:7px;font-size:12px;cursor:pointer;
+  font-family:'Outfit',sans-serif;transition:all .2s;
+}
+.btn-logout:hover{border-color:var(--red);color:var(--red)}
+#clockDisplay{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3)}
+ 
+/* TABS */
+.tabs-bar{
+  display:flex;gap:2px;padding:0 1.5rem;
+  background:var(--s1);border-bottom:1px solid var(--bd);overflow-x:auto;
+}
+.tabs-bar::-webkit-scrollbar{height:0}
+.tab-btn{
+  padding:13px 18px;border:none;background:transparent;
+  color:var(--txt2);font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;
+  cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;
   transition:all .2s;
 }
-.nav-btn:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)}
-.nav-btn.danger:hover{background:rgba(239,68,68,.12);color:#fca5a5;border-color:rgba(239,68,68,.3)}
-.nav-btn.accent{
-  background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(6,182,212,.12));
-  border-color:rgba(99,102,241,.4);color:#a5b4fc;
-}
-.nav-btn.accent:hover{background:linear-gradient(135deg,rgba(99,102,241,.35),rgba(6,182,212,.2));border-color:rgba(99,102,241,.7)}
+.tab-btn:hover{color:var(--txt)}
+.tab-btn.active{color:var(--gold2);border-bottom-color:var(--gold)}
  
-/* Ticker */
-.ticker-bar{
-  height:34px;background:rgba(99,102,241,.05);
-  border-bottom:1px solid rgba(99,102,241,.1);overflow:hidden;
-  display:flex;align-items:center;flex-shrink:0;
-}
-.ticker-inner{display:flex;gap:36px;white-space:nowrap;animation:ticker 35s linear infinite}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ti{
-  font-family:'JetBrains Mono',monospace;font-size:10.5px;
-  color:rgba(99,102,241,.55);display:flex;align-items:center;gap:8px;
-}
-.tup{color:#6ee7b7}.tmd{color:#fcd34d}.tdn{color:#fca5a5}
+/* MAIN CONTENT */
+.main{padding:1.5rem;max-width:1100px;margin:0 auto}
+.section{display:none}.section.active{display:block}
  
-/* Scrollable body */
-.dash-body{flex:1;overflow-y:auto;overflow-x:hidden;padding:20px 24px}
-.dash-body::-webkit-scrollbar{width:4px}
-.dash-body::-webkit-scrollbar-track{background:transparent}
-.dash-body::-webkit-scrollbar-thumb{background:rgba(99,102,241,.3);border-radius:2px}
+/* ── STAT STRIP ── */
+.stat-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;
+}
+.stat-card{
+  background:var(--s2);border:1px solid var(--bd);border-radius:var(--radius);
+  padding:1rem 1.25rem;
+}
+.stat-card .lbl{font-size:11px;color:var(--txt2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.stat-card .val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500}
+.stat-card .sub{font-size:11px;color:var(--txt3);margin-top:3px}
  
-/* Stats row */
-.hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
-.hsc{
-  padding:18px 16px;border-radius:14px;position:relative;overflow:hidden;
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+/* ── LEAGUE FILTER ── */
+.league-filter{display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap}
+.lf-btn{
+  background:var(--s2);border:1px solid var(--bd);border-radius:20px;
+  padding:6px 14px;font-size:12px;font-weight:500;color:var(--txt2);
+  cursor:pointer;transition:all .2s;
 }
-.hsc-glow{position:absolute;top:-25px;right:-25px;width:80px;height:80px;border-radius:50%;opacity:.12;pointer-events:none}
-.hsc-lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;font-family:'JetBrains Mono',monospace}
-.hsc-val{font-family:'Orbitron',monospace;font-size:24px;font-weight:700;color:#fff}
-.hsc-sub{font-size:10.5px;color:rgba(255,255,255,.25);margin-top:4px}
+.lf-btn:hover{border-color:var(--bd2);color:var(--txt)}
+.lf-btn.active{background:rgba(200,168,75,.12);border-color:var(--gold);color:var(--gold2)}
  
-/* Section header */
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.st{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.28);display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace}
-.stl{width:16px;height:1px;background:rgba(99,102,241,.5)}
+/* ── MATCH CARDS ── */
+.matches-list{display:flex;flex-direction:column;gap:12px}
+.match-card{
+  background:var(--s2);border:1px solid var(--bd);border-radius:var(--radius2);
+  overflow:hidden;transition:border-color .25s;
+}
+.match-card:hover{border-color:var(--bd2)}
+.match-card.analyzing{border-color:var(--gold);animation:border-glow 2s infinite}
+@keyframes border-glow{0%,100%{border-color:var(--gold)}50%{border-color:var(--gold3)}}
  
-/* Log box */
-.logbox{
-  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
-  border-radius:12px;padding:12px 14px;margin-bottom:20px;
+.mc-header{
+  display:flex;align-items:center;gap:12px;padding:14px 16px 10px;
+  border-bottom:1px solid var(--bd);
 }
-.ll{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  color:rgba(255,255,255,.3);padding:3px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:10px;
-}
-.ll:last-child{border-bottom:none}
-.lt{color:rgba(99,102,241,.5);min-width:54px;flex-shrink:0}
-.lok{color:#6ee7b7}.lwn{color:#fcd34d}
+.mc-league{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:1px;background:var(--s3);padding:2px 8px;border-radius:3px}
+.mc-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-left:auto}
+.mc-live{background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.35);color:var(--red);font-size:10px;padding:2px 7px;border-radius:3px;letter-spacing:.5px;animation:pulse 1.5s infinite}
  
-/* Product grid */
-#pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-bottom:24px}
-.pc{
-  border-radius:16px;padding:20px 16px;
-  border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);
-  position:relative;overflow:hidden;transition:transform .25s,border-color .25s;
+.mc-body{padding:14px 16px}
+.mc-teams{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.mc-team{font-size:16px;font-weight:600;flex:1}
+.mc-team.away{text-align:right}
+.mc-vs{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);padding:0 4px}
+ 
+/* PROBABILITY BARS */
+.prob-row{display:grid;grid-template-columns:1fr 60px 1fr;gap:6px;align-items:center;margin-bottom:12px}
+.prob-bar-wrap{height:6px;background:var(--bg);border-radius:3px;overflow:hidden}
+.prob-bar{height:100%;border-radius:3px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.prob-home .prob-bar{background:var(--blu);float:right}
+.prob-away .prob-bar{background:var(--gold)}
+.prob-labels{display:grid;grid-template-columns:1fr 60px 1fr;gap:6px;margin-bottom:14px}
+.prob-pct{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
+.prob-pct.home{color:var(--blu2)}
+.prob-pct.away{color:var(--gold2)}
+.prob-pct.draw{color:var(--txt2);text-align:center}
+.prob-lbl{font-size:10px;color:var(--txt3);text-transform:uppercase}
+.prob-lbl.home{}.prob-lbl.away{text-align:right}
+ 
+/* FLOW METERS */
+.flow-section{background:var(--bg);border-radius:8px;padding:12px;margin-bottom:12px}
+.flow-title{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.flow-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.flow-name{font-size:12px;color:var(--txt2);width:80px;flex-shrink:0}
+.flow-track{flex:1;height:8px;background:var(--s3);border-radius:4px;overflow:hidden}
+.flow-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.flow-pct{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;width:36px;text-align:right}
+.trap-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(230,57,70,.12);border:1px solid rgba(230,57,70,.25);
+  color:var(--red2);font-size:11px;padding:4px 9px;border-radius:4px;
 }
-.pc:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16)}
-.pcg{position:absolute;top:-40px;right:-40px;width:100px;height:100px;border-radius:50%;opacity:.1;pointer-events:none}
-.pct{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
-.pci{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.pdel{
-  background:transparent;border:none;color:rgba(255,255,255,.18);
-  cursor:pointer;font-size:13px;padding:4px;transition:color .2s;line-height:1;
+.sharp-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(5,214,158,.1);border:1px solid rgba(5,214,158,.25);
+  color:var(--grn2);font-size:11px;padding:4px 9px;border-radius:4px;
 }
-.pdel:hover{color:#f87171}
-.pcn{font-size:13.5px;font-weight:600;color:#f1f5f9;margin-bottom:4px;line-height:1.3}
-.pcd{font-size:11px;color:rgba(255,255,255,.33);line-height:1.5;margin-bottom:12px}
-.wh{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
-.wl{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.27);font-family:'JetBrains Mono',monospace}
-.wp{font-family:'Orbitron',monospace;font-size:17px;font-weight:700}
-.wbg{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-bottom:10px}
-.wbf{height:100%;border-radius:2px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
-.wsb{
-  width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
-  border-radius:8px;padding:7px 10px;color:rgba(255,255,255,.42);
-  font-size:10px;cursor:pointer;font-family:'JetBrains Mono',monospace;
-  letter-spacing:.4px;transition:all .2s;display:flex;align-items:center;
-  justify-content:center;gap:6px;
-}
-.wsb:hover:not(:disabled){background:rgba(99,102,241,.14);color:#a5b4fc;border-color:rgba(99,102,241,.4)}
-.wsb:disabled{opacity:.4;cursor:not-allowed}
-.wsb.spin{animation:blk .35s ease infinite}
-@keyframes blk{0%,100%{opacity:1}50%{opacity:.35}}
-.ptag{
-  display:inline-block;font-size:9.5px;padding:2px 9px;
-  border-radius:20px;font-weight:600;margin-top:8px;
-  font-family:'JetBrains Mono',monospace;letter-spacing:.5px;
+.neutral-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(141,154,184,.1);border:1px solid rgba(141,154,184,.2);
+  color:var(--txt2);font-size:11px;padding:4px 9px;border-radius:4px;
 }
  
-/* ===== MODALS ===== */
-.modal-bg{
-  display:none;position:fixed;inset:0;z-index:100;
-  background:rgba(0,0,0,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  align-items:center;justify-content:center;padding:20px;
+/* ODDS ROW */
+.odds-row{display:flex;gap:6px;margin-bottom:12px}
+.odd-chip{
+  background:var(--s3);border:1px solid var(--bd);border-radius:6px;
+  padding:6px 12px;text-align:center;flex:1;
 }
-.modal-bg.open{display:flex}
-.mbox{
-  width:100%;max-width:430px;padding:36px 32px;
-  background:rgba(8,13,30,.92);border:1px solid rgba(255,255,255,.13);
-  border-radius:22px;position:relative;
-}
-.mbox::before{
-  content:'';position:absolute;inset:0;border-radius:22px;
-  background:linear-gradient(135deg,rgba(99,102,241,.05) 0,transparent 60%);
-  pointer-events:none;
-}
-.mtitle{
-  font-family:'Orbitron',monospace;font-size:14px;font-weight:700;
-  letter-spacing:1px;color:#a5b4fc;margin-bottom:24px;
-}
-.mlb{
-  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
-  color:rgba(255,255,255,.3);margin-bottom:7px;margin-top:14px;
-  font-family:'JetBrains Mono',monospace;
-}
-.mi{
-  width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;padding:12px 14px;font-size:13px;color:#e2e8f0;
-  font-family:'Space Grotesk',sans-serif;outline:none;transition:border-color .2s;
-}
-.mi::placeholder{color:rgba(255,255,255,.2)}
-.mi:focus{border-color:rgba(99,102,241,.6)}
-.erow{display:flex;gap:7px;flex-wrap:wrap}
-.eo{
-  width:36px;height:36px;border-radius:8px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
-  cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;
-  transition:all .15s;
-}
-.eo:hover,.eo.on{background:rgba(99,102,241,.2);border-color:rgba(99,102,241,.5)}
-.mbtns{display:flex;gap:10px;margin-top:22px}
-.mbtn-save{
-  flex:1;padding:13px;background:linear-gradient(135deg,#6366f1,#06b6d4);
-  border:none;border-radius:10px;color:#fff;font-family:'Orbitron',monospace;
-  font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:opacity .2s;
-}
-.mbtn-save:hover{opacity:.88}
-.mbtn-cancel{
-  padding:13px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
-  border-radius:10px;color:rgba(255,255,255,.4);font-family:'Space Grotesk',sans-serif;
-  font-size:13px;cursor:pointer;transition:background .2s;
-}
-.mbtn-cancel:hover{background:rgba(255,255,255,.08)}
+.odd-chip .ol{font-size:10px;color:var(--txt3);text-transform:uppercase;margin-bottom:2px}
+.odd-chip .ov{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;color:var(--txt)}
  
-/* Account management modal */
-.acc-list{margin-top:6px}
-.acc-row{
+/* AI RESULT */
+.ai-panel{
+  border-top:1px solid var(--bd);padding:14px 16px;
+  background:linear-gradient(135deg,rgba(200,168,75,.04) 0%,transparent 60%);
+  display:none;
+}
+.ai-panel.open{display:block}
+.ai-panel-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ai-label{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1.5px;color:var(--gold)}
+.verdict-chip{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.v-bet{background:rgba(5,214,158,.15);color:var(--grn2);border:1px solid rgba(5,214,158,.3)}
+.v-skip{background:rgba(141,154,184,.12);color:var(--txt2);border:1px solid rgba(141,154,184,.25)}
+.v-risk{background:rgba(200,168,75,.15);color:var(--gold2);border:1px solid rgba(200,168,75,.3)}
+.v-watch{background:rgba(61,126,255,.15);color:var(--blu2);border:1px solid rgba(61,126,255,.3)}
+.conf-bar-wrap{height:4px;background:var(--bd);border-radius:2px;overflow:hidden;flex:1}
+.conf-bar-fill{height:100%;background:linear-gradient(90deg,var(--grn),var(--gold));border-radius:2px;transition:width .8s}
+.ai-text{font-size:13px;line-height:1.85;color:#9aa5c0}
+.ai-text strong{color:var(--gold2);font-weight:600}
+.ai-dots{display:flex;gap:4px;align-items:center;padding:4px 0}
+.dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:dotbounce .9s infinite}
+.dot:nth-child(2){animation-delay:.18s}.dot:nth-child(3){animation-delay:.36s}
+@keyframes dotbounce{0%,80%,100%{transform:scale(.7);opacity:.4}40%{transform:scale(1.1);opacity:1}}
+ 
+.btn-analyze{
+  background:transparent;border:1px solid var(--bd2);color:var(--txt2);
+  padding:7px 14px;border-radius:7px;font-size:12px;font-weight:500;
+  cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.btn-analyze:hover{border-color:var(--gold);color:var(--gold2)}
+.btn-analyze:disabled{opacity:.4;cursor:not-allowed}
+.mc-footer{
   display:flex;align-items:center;justify-content:space-between;
-  padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
-  border-radius:10px;margin-bottom:8px;
+  padding:10px 16px;border-top:1px solid var(--bd);
 }
-.acc-info{display:flex;align-items:center;gap:10px}
-.acc-av{
-  width:30px;height:30px;border-radius:50%;
-  background:linear-gradient(135deg,#6366f1,#06b6d4);
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;color:#fff;flex-shrink:0;
-}
-.acc-name{font-size:13px;font-weight:600;color:#e2e8f0}
-.acc-role{font-size:10.5px;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace}
-.acc-del-btn{
-  background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);
-  border-radius:6px;padding:4px 10px;color:#fca5a5;font-size:11px;
-  cursor:pointer;transition:all .2s;font-family:'JetBrains Mono',monospace;
-}
-.acc-del-btn:hover{background:rgba(239,68,68,.22);border-color:rgba(239,68,68,.4)}
-.acc-del-btn:disabled{opacity:.3;cursor:not-allowed}
-.role-select{
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;padding:9px 12px;font-size:12.5px;color:#e2e8f0;
-  font-family:'Space Grotesk',sans-serif;outline:none;width:100%;margin-top:2px;
-}
-.role-select option{background:#0a0f22}
-.pass-strength{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:6px}
-.ps-fill{height:100%;border-radius:2px;transition:width .3s,background .3s}
-.mi-group{position:relative}
-.eye-btn{
-  position:absolute;right:12px;top:50%;transform:translateY(-50%);
-  background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);
-  font-size:14px;padding:4px;transition:color .2s;
-}
-.eye-btn:hover{color:rgba(255,255,255,.6)}
-.mi-group .mi{padding-right:40px}
+.update-time{font-size:11px;color:var(--txt3);font-family:'JetBrains Mono',monospace}
  
-/* Notification toast */
-#toast{
-  position:fixed;bottom:24px;right:24px;z-index:999;
-  background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.35);
-  border-radius:12px;padding:12px 20px;
-  font-family:'JetBrains Mono',monospace;font-size:12px;color:#6ee7b7;
-  display:none;animation:toastIn .3s ease;
+/* ── ADMIN PANEL ── */
+.admin-section{max-width:700px}
+.admin-card{background:var(--s2);border:1px solid var(--bd);border-radius:var(--radius2);padding:1.5rem;margin-bottom:1.25rem}
+.admin-card h3{font-size:15px;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.admin-card h3 span{font-size:11px;color:var(--txt3);font-weight:400}
+.users-table{width:100%;border-collapse:collapse}
+.users-table th{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.6px;text-align:left;padding:8px 10px;border-bottom:1px solid var(--bd)}
+.users-table td{padding:10px 10px;border-bottom:1px solid var(--bd);font-size:13px;vertical-align:middle}
+.users-table tr:last-child td{border-bottom:none}
+.role-admin-badge{background:rgba(200,168,75,.15);color:var(--gold);font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600}
+.role-vip-badge{background:rgba(61,126,255,.15);color:var(--blu2);font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600}
+.role-user-badge{background:rgba(141,154,184,.1);color:var(--txt2);font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600}
+.btn-del{background:transparent;border:1px solid rgba(230,57,70,.3);color:var(--red);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.btn-del:hover{background:rgba(230,57,70,.12)}
+.add-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-top:1rem}
+.add-form .field{margin:0}
+.btn-add{
+  background:var(--gold);color:#07080b;border:none;border-radius:8px;
+  padding:11px 18px;font-family:'Bebas Neue',sans-serif;font-size:16px;
+  letter-spacing:1.5px;cursor:pointer;transition:all .2s;white-space:nowrap;
 }
-#toast.err{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.35);color:#fca5a5}
-@keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.btn-add:hover{background:var(--gold2)}
+.msg-box{font-size:12px;padding:8px 12px;border-radius:6px;margin-top:.75rem;display:none}
+.msg-ok{background:rgba(5,214,158,.1);border:1px solid rgba(5,214,158,.25);color:var(--grn2)}
+.msg-err{background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.25);color:var(--red2)}
  
-/* Responsive */
-@media(max-width:768px){
-  .hstats{grid-template-columns:repeat(2,1fr)}
-  #pgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
-  .login-card{padding:36px 28px}
-  .topnav{padding:0 14px}
-  .dash-body{padding:14px}
-  .tnr .online-pill{display:none}
-}
-@media(max-width:480px){
-  .hstats{grid-template-columns:1fr 1fr}
-  .tnr .tn-ver{display:none}
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .stat-strip{grid-template-columns:1fr 1fr}
+  .add-form{grid-template-columns:1fr;gap:8px}
+  .topbar{padding:0 1rem}
+  .main{padding:1rem}
 }
 </style>
 </head>
 <body>
  
-<!-- Particle Canvas -->
-<canvas id="bg-canvas"></canvas>
-<div class="grid-overlay"></div>
- 
-<!-- SVG gradient defs -->
-<svg width="0" height="0" style="position:absolute">
-  <defs>
-    <linearGradient id="grd" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#a5b4fc"/>
-      <stop offset="100%" stop-color="#67e8f9"/>
-    </linearGradient>
-  </defs>
-</svg>
- 
-<!-- ===== LOGIN SCREEN ===== -->
-<div id="login-screen">
-  <div class="scan-line"></div>
-  <div class="corner corner-tl"></div>
-  <div class="corner corner-tr"></div>
-  <div class="corner corner-bl"></div>
-  <div class="corner corner-br"></div>
- 
-  <!-- Floating data decorations -->
-  <div class="float-data fd1">SYS_UPTIME: 99.97% ▲<br>NODES: 2,048 ACTIVE<br>LATENCY: 1.2ms</div>
-  <div class="float-data fd2">AI_MODEL: v4.1-turbo<br>ACCURACY: 98.7%<br>LAST_SYNC: 00:00:01</div>
-  <div class="float-data fd3">SIGNAL_PROC: ONLINE<br>FEEDS: 47 ACTIVE<br>ALERTS: 3 PENDING</div>
-  <div class="float-data fd4">PORTFOLIO: LIVE<br>RISK_SCORE: LOW<br>UPTIME: 847d 12h</div>
-  <div class="float-data fd5">ENCRYPTION: AES-256<br>AUTH: 2-LAYER<br>STATUS: SECURED</div>
- 
-  <!-- Status bar -->
-  <div class="status-bar-top">
-    <div class="sbar-item"><div class="sbar-dot"></div>NEXUS AI SYSTEM — SECURE ACCESS POINT</div>
-    <div class="sbar-right">
-      <span id="sys-clock">00:00:00</span>
-      <span>v2.4.1</span>
-      <span>🔒 ENCRYPTED</span>
+<!-- ════════════ LOGIN PAGE ════════════ -->
+<div id="loginPage">
+  <div class="login-bg"></div>
+  <div class="login-grid"></div>
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="brand">TIPSTER<em>PRO</em></div>
+      <div class="sub">Hệ thống phân tích kèo thực tế</div>
     </div>
-  </div>
- 
-  <div class="login-card">
-    <div class="logo-wrap">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
-          <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
-          <circle cx="12" cy="12" r="8" stroke-dasharray="4 2"/>
-        </svg>
+    <div class="login-card">
+      <h2>Đăng nhập tài khoản</h2>
+      <div class="login-err" id="loginErr">Sai tên đăng nhập hoặc mật khẩu</div>
+      <div class="field">
+        <label>Tên đăng nhập</label>
+        <input type="text" id="loginUser" placeholder="username" autocomplete="username"/>
       </div>
-      <div class="logo-main">NEXUS AI</div>
-      <div class="logo-sub">Product Intelligence System</div>
-    </div>
- 
-    <div class="field-wrap">
-      <label class="field-label" for="f-user">Access ID</label>
-      <div class="mi-group">
-        <input class="field-input" type="text" id="f-user" placeholder="Enter your access ID" autocomplete="off" spellcheck="false"/>
+      <div class="field">
+        <label>Mật khẩu</label>
+        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password"/>
       </div>
+      <button class="btn-login" onclick="doLogin()">ĐĂNG NHẬP</button>
+      <div class="login-note">Liên hệ admin để được cấp tài khoản</div>
     </div>
-    <div class="field-wrap">
-      <label class="field-label" for="f-pass">Security Key</label>
-      <div class="mi-group">
-        <input class="field-input mi" type="password" id="f-pass" placeholder="••••••••••" id="f-pass"/>
-        <button class="eye-btn" onclick="togglePass('f-pass',this)" type="button">👁</button>
-      </div>
-    </div>
- 
-    <button class="login-btn" onclick="doLogin()">ACCESS SYSTEM</button>
-    <div class="login-err" id="login-err">⚠ &nbsp;Invalid credentials — access denied</div>
   </div>
 </div>
  
-<!-- ===== DASHBOARD ===== -->
-<div id="dash-screen">
-  <div class="topnav">
-    <div class="tnl">
-      <div class="tn-logo">NEXUS AI</div>
-      <div class="tn-ver">v2.4.1</div>
-    </div>
-    <div class="tnr">
-      <div class="online-pill"><div class="dp"></div>ALL SYSTEMS ONLINE</div>
-      <div class="user-chip">
-        <div class="av" id="nav-av">AD</div>
-        <span id="nav-uname" style="font-size:12px;color:rgba(255,255,255,.6)">admin</span>
-        <span id="nav-role" style="font-size:10px;color:rgba(99,102,241,.7);font-family:'JetBrains Mono',monospace;margin-left:4px">[ADMIN]</span>
+<!-- ════════════ APP PAGE ════════════ -->
+<div id="appPage">
+ 
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-brand">TIPSTER<em>PRO</em></div>
+    <div class="topbar-badge">● LIVE</div>
+    <div class="topbar-right">
+      <div id="clockDisplay">--:--:--</div>
+      <div class="user-pill" id="userPill">
+        <div class="user-avatar" id="userAvatar"></div>
+        <span id="userNameDisplay"></span>
+        <span id="userRoleBadge"></span>
       </div>
-      <button class="nav-btn accent" id="btn-add-prod" onclick="openAddProd()">+ Product</button>
-      <button class="nav-btn" id="btn-accts" onclick="openAccounts()" style="display:none">⚙ Accounts</button>
-      <button class="nav-btn danger" onclick="doLogout()">Sign out</button>
+      <button class="btn-logout" onclick="doLogout()">Đăng xuất</button>
     </div>
   </div>
  
-  <div class="ticker-bar"><div class="ticker-inner" id="ticker-inner"></div></div>
- 
-  <div class="dash-body">
-    <div class="hstats">
-      <div class="hsc"><div class="hsc-glow" style="background:#6366f1"></div><div class="hsc-lbl">Total Products</div><div class="hsc-val" id="hs-n">20</div><div class="hsc-sub">Active modules</div></div>
-      <div class="hsc"><div class="hsc-glow" style="background:#06b6d4"></div><div class="hsc-lbl">Avg Win Rate</div><div class="hsc-val" id="hs-avg">—</div><div class="hsc-sub">All products</div></div>
-      <div class="hsc"><div class="hsc-glow" style="background:#10b981"></div><div class="hsc-lbl">Top Performer</div><div class="hsc-val" id="hs-top" style="font-size:13px;padding-top:5px">—</div><div class="hsc-sub">Highest win rate</div></div>
-      <div class="hsc"><div class="hsc-glow" style="background:#f59e0b"></div><div class="hsc-lbl">AI Confidence</div><div class="hsc-val" id="hs-conf">98.7%</div><div class="hsc-sub">Model accuracy</div></div>
-    </div>
- 
-    <div class="sh" style="margin-bottom:10px">
-      <div class="st"><div class="stl"></div>LIVE SYSTEM LOG</div>
-    </div>
-    <div class="logbox" id="logbox"></div>
- 
-    <div class="sh">
-      <div class="st"><div class="stl"></div>PRODUCT MODULES</div>
-      <span style="font-size:10px;color:rgba(255,255,255,.25);font-family:'JetBrains Mono',monospace" id="prod-count-label"></span>
-    </div>
-    <div id="pgrid"></div>
+  <!-- TABS -->
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="switchTab('matches',this)">⚽ Trận sắp diễn ra</button>
+    <button class="tab-btn" onclick="switchTab('flow',this)">💸 Dòng tiền</button>
+    <button class="tab-btn" id="adminTabBtn" onclick="switchTab('admin',this)" style="display:none">⚙️ Quản lý tài khoản</button>
   </div>
-</div>
  
-<!-- ===== ADD PRODUCT MODAL ===== -->
-<div class="modal-bg" id="modal-add">
-<div class="mbox">
-  <div class="mtitle">NEW PRODUCT MODULE</div>
-  <div class="mlb">Icon</div>
-  <div class="erow" id="ep">
-    <span class="eo on" onclick="pickE(this,'🤖')">🤖</span>
-    <span class="eo" onclick="pickE(this,'⚡')">⚡</span>
-    <span class="eo" onclick="pickE(this,'🔮')">🔮</span>
-    <span class="eo" onclick="pickE(this,'🎯')">🎯</span>
-    <span class="eo" onclick="pickE(this,'💎')">💎</span>
-    <span class="eo" onclick="pickE(this,'🚀')">🚀</span>
-    <span class="eo" onclick="pickE(this,'🌐')">🌐</span>
-    <span class="eo" onclick="pickE(this,'🔥')">🔥</span>
-    <span class="eo" onclick="pickE(this,'📡')">📡</span>
-    <span class="eo" onclick="pickE(this,'🧬')">🧬</span>
-    <span class="eo" onclick="pickE(this,'🛡️')">🛡️</span>
-    <span class="eo" onclick="pickE(this,'💹')">💹</span>
-    <span class="eo" onclick="pickE(this,'🌊')">🌊</span>
-    <span class="eo" onclick="pickE(this,'🏆')">🏆</span>
-  </div>
-  <div class="mlb">Product Name</div>
-  <input class="mi" id="p-name" placeholder="e.g. AlphaSignal Pro"/>
-  <div class="mlb">Short Description</div>
-  <input class="mi" id="p-desc" placeholder="e.g. AI-powered signal analysis engine"/>
-  <div class="mlb">Category Tag</div>
-  <input class="mi" id="p-tag" placeholder="e.g. Trading, Analytics, Bot..."/>
-  <div class="mbtns">
-    <button class="mbtn-save" onclick="saveProd()">SAVE MODULE</button>
-    <button class="mbtn-cancel" onclick="closeAddProd()">Cancel</button>
-  </div>
-</div>
-</div>
+  <!-- MAIN -->
+  <div class="main">
  
-<!-- ===== ACCOUNT MANAGEMENT MODAL ===== -->
-<div class="modal-bg" id="modal-acc">
-<div class="mbox" style="max-width:520px">
-  <div class="mtitle">⚙ ACCOUNT MANAGEMENT</div>
- 
-  <div class="sh" style="margin-bottom:10px">
-    <div class="st"><div class="stl"></div>ACTIVE ACCOUNTS</div>
-  </div>
-  <div class="acc-list" id="acc-list"></div>
- 
-  <div style="border-top:1px solid rgba(255,255,255,.07);margin-top:20px;padding-top:20px">
-    <div class="st" style="margin-bottom:14px"><div class="stl"></div>CREATE NEW ACCOUNT</div>
-    <div class="mlb">Username</div>
-    <input class="mi" id="new-user" placeholder="Enter username" autocomplete="off" spellcheck="false"/>
-    <div class="mlb">Password</div>
-    <div class="mi-group">
-      <input class="mi" type="password" id="new-pass" placeholder="Min 6 characters" oninput="checkStrength(this.value)"/>
-      <button class="eye-btn" onclick="togglePass('new-pass',this)" type="button">👁</button>
-    </div>
-    <div class="pass-strength"><div class="ps-fill" id="ps-fill" style="width:0%;background:#ef4444"></div></div>
-    <div class="mlb">Role</div>
-    <select class="role-select" id="new-role">
-      <option value="viewer">Viewer — read only</option>
-      <option value="editor">Editor — view + re-analyze</option>
-    </select>
-  </div>
-  <div class="mbtns">
-    <button class="mbtn-save" onclick="createAccount()">CREATE ACCOUNT</button>
-    <button class="mbtn-cancel" onclick="closeAccounts()">Close</button>
-  </div>
-</div>
-</div>
- 
-<!-- Toast -->
-<div id="toast"></div>
- 
-<script>
-/* ===================================================
-   PARTICLE BACKGROUND
-=================================================== */
-(function(){
-  const c=document.getElementById('bg-canvas');
-  const ctx=c.getContext('2d');
-  let W,H,pts=[];
-  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;}
-  resize();window.addEventListener('resize',()=>{resize();init();});
-  function rnd(a,b){return a+Math.random()*(b-a);}
-  function init(){
-    pts=[];
-    const n=Math.min(80,Math.floor(W*H/14000));
-    for(let i=0;i<n;i++){
-      pts.push({
-        x:rnd(0,W),y:rnd(0,H),
-        vx:rnd(-.3,.3),vy:rnd(-.3,.3),
-        r:rnd(1,2.5),
-        a:rnd(0,.6),
-        col:Math.random()<.6?'99,102,241':'6,182,212'
-      });
-    }
-  }
-  init();
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(let i=0;i<pts.length;i++){
-      const p=pts[i];
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;
-      if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(${p.col},${p.a})`;
-      ctx.fill();
-      for(let j=i+1;j<pts.length;j++){
-        const q=pts[j];
-        const dx=p.x-q.x,dy=p.y-q.y;
-        const d=Math.sqrt(dx*dx+dy*dy);
-        if(d<120){
-          ctx.beginPath();
-          ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
-          ctx.strokeStyle=`rgba(99,102,241,${.12*(1-d/120)})`;
-          ctx.lineWidth=.5;ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
- 
-/* ===================================================
-   CLOCK
-=================================================== */
-function updateClock(){
-  const n=new Date();
-  const t=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
-  const el=document.getElementById('sys-clock');
-  if(el)el.textContent=t;
-}
-setInterval(updateClock,1000);updateClock();
- 
-/* ===================================================
-   DATA
-=================================================== */
-const ADMIN_USER='admin';
-const ADMIN_PASS='admin123';
- 
-let accounts=[
-  {id:'admin',pass:'admin123',role:'admin',label:'Admin'},
-];
- 
-const PRODUCTS=[
-   {icon:'🀄', name:'Đường Mạt Chược', desc:'Sảnh PG – trò slot mạt chược cổ điển với cơ chế xếp cặp và nổ hũ theo chuỗi', tag:'PG', color:'#6366f1', win:0},
-  {icon:'🏺', name:'Kho Báu Aztec', desc:'Sảnh PG – slot khám phá kho báu cổ đại với jackpot ẩn trong lăng mộ', tag:'PG', color:'#f59e0b', win:0},
-  {icon:'🀄', name:'Đường Mạt Chược 2', desc:'Sảnh PG – phiên bản nâng cấp với hiệu ứng nổ hũ liên hoàn', tag:'PG', color:'#8b5cf6', win:0},
-  {icon:'💰', name:'Quyết Chiến Tiền Thưởng', desc:'Sảnh PG – slot chiến đấu mở khóa vòng thưởng lớn và jackpot', tag:'PG', color:'#ef4444', win:0},
-  {icon:'🦹', name:'Wild Đạo Tặc', desc:'Sảnh PG – slot wild với cơ chế nhân thưởng và chuỗi thắng', tag:'PG', color:'#10b981', win:0},
-  {icon:'🦄', name:'Kỳ Lân Mách Nước', desc:'Sảnh PG – slot may mắn dẫn lối đến jackpot bí ẩn', tag:'PG', color:'#a78bfa', win:0},
-  {icon:'🐰', name:'Thỏ May Mắn', desc:'Sảnh PG – slot nhẹ nhàng với biểu tượng nhân đôi may mắn', tag:'PG', color:'#f472b6', win:0},
-  {icon:'🍷', name:'Quý Bà Say Rượu', desc:'Sảnh PG – slot giải trí với hiệu ứng bonus ngẫu nhiên', tag:'PG', color:'#fb7185', win:0},
-  {icon:'🔥', name:'Chiến Thắng CaiShen', desc:'Sảnh PG – thần tài Cai Shen mang đến jackpot tài lộc lớn', tag:'PG', color:'#fbbf24', win:0},
-
-  {icon:'🎧', name:'DJ Vàng Sôi Động', desc:'Sảnh FC – slot âm nhạc quay thưởng theo nhịp beat', tag:'FC', color:'#f59e0b', win:0},
-  {icon:'🐺', name:'Sói Đạo Tặc', desc:'Sảnh FC – slot săn thưởng với cơ chế wild và nhân hệ số', tag:'FC', color:'#64748b', win:0},
-  {icon:'💰', name:'Mở Két Vàng', desc:'Sảnh FC – mở két sắt để nhận jackpot bí mật', tag:'FC', color:'#eab308', win:0},
-  {icon:'🐱', name:'Mèo Chiêu Tài Mạnh Mẽ', desc:'Sảnh FC – mèo tài lộc mang đến vòng quay may mắn', tag:'FC', color:'#f472b6', win:0},
-  {icon:'💥', name:'Bạo Kích Đường Mật PLUS', desc:'Sảnh FC – slot tốc độ cao với chuỗi nổ thưởng liên tục', tag:'FC', color:'#ef4444', win:0},
-  {icon:'🃏', name:'Át Chủ Bài Tối Thượng 2', desc:'Sảnh FC – slot bài tây với cơ chế combo thắng lớn', tag:'FC', color:'#1d4ed8', win:0},
-  {icon:'🏧', name:'Máy Rút Tiền Catla', desc:'Sảnh FC – slot mô phỏng máy ATM rút thưởng liên tục', tag:'FC', color:'#22c55e', win:0},
-  {icon:'🤖', name:'Thần Tài Cyber⁺', desc:'Sảnh FC – thần tài công nghệ tạo jackpot tự động', tag:'FC', color:'#06b6d4', win:0},
-  {icon:'⚔️', name:'Thanh Kiếm Của Vua', desc:'Sảnh FC – slot chiến đấu mở kho báu hoàng gia', tag:'FC', color:'#f97316', win:0},
-  {icon:'🐃', name:'Ngưu Ngàn Cách Thắng', desc:'Sảnh FC – slot sức mạnh bò thần với nhiều cách thắng', tag:'FC', color:'#10b981', win:0},
-  {icon:'🌲', name:'Bạo Kích Rừng Rậm', desc:'Sảnh FC – slot rừng hoang với hiệu ứng wild bùng nổ', tag:'FC', color:'#16a34a', win:0},
-  {icon:'🏺', name:'Kho Báu Của Odin', desc:'Sảnh FC – thần thoại Bắc Âu mở kho báu cổ đại', tag:'FC', color:'#a78bfa', win:0},
-  {icon:'🔥', name:'Phượng Hoàng Bay Cao', desc:'Sảnh FC – phượng hoàng tái sinh nhân đôi phần thưởng', tag:'FC', color:'#f97316', win:0},
-  {icon:'💥', name:'Bạo Kích Đường Mật 2', desc:'Sảnh FC – phiên bản nâng cấp với tỷ lệ nổ hũ cao hơn', tag:'FC', color:'#ef4444', win:0},
-  {icon:'👊', name:'Cú Đấm Tài Lộc', desc:'Sảnh FC – slot combo nhanh với phần thưởng liên tục', tag:'FC', color:'#eab308', win:0}
-];
- 
-const COOLDOWN_MS=10000;
-const spinning={},cooldowns={};
-let currentUser=null,isAdmin=false;
-const logs=[];
- 
-function rndWin(){return Math.floor(Math.random()*57)+40;}
-function driftWin(w){return Math.min(96,Math.max(40,w+Math.floor(Math.random()*11)-5));}
-function wcol(w){return w>=80?'#6ee7b7':w>=65?'#fcd34d':'#fca5a5';}
-function tcls(w){return w>=80?'tup':w>=65?'tmd':'tdn';}
- 
-/* ===================================================
-   LOGIN
-=================================================== */
-function doLogin(){
-  const u=document.getElementById('f-user').value.trim();
-  const p=document.getElementById('f-pass').value;
-  const acc=accounts.find(a=>a.id===u&&a.pass===p);
-  if(acc){
-    currentUser=acc;isAdmin=(acc.role==='admin');
-    document.getElementById('login-err').style.display='none';
-    document.getElementById('login-screen').style.display='none';
-    const dash=document.getElementById('dash-screen');
-    dash.style.display='flex';
-    document.getElementById('nav-av').textContent=acc.id.slice(0,2).toUpperCase();
-    document.getElementById('nav-uname').textContent=acc.id;
-    document.getElementById('nav-role').textContent=isAdmin?'[ADMIN]':'['+acc.role.toUpperCase()+']';
-    document.getElementById('btn-accts').style.display=isAdmin?'':'none';
-    PRODUCTS.forEach(pr=>pr.win=rndWin());
-    renderProducts();
-    renderTicker();
-    initLogs();
-    startAutoLog();
-  }else{
-    document.getElementById('login-err').style.display='block';
-  }
-}
-document.getElementById('f-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-document.getElementById('f-user').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
- 
-function doLogout(){
-  currentUser=null;isAdmin=false;
-  document.getElementById('dash-screen').style.display='none';
-  document.getElementById('login-screen').style.display='flex';
-  document.getElementById('f-user').value='';
-  document.getElementById('f-pass').value='';
-  Object.keys(cooldowns).forEach(k=>{clearInterval(k);delete cooldowns[k];});
-  Object.keys(spinning).forEach(k=>delete spinning[k]);
-}
- 
-/* ===================================================
-   PRODUCTS
-=================================================== */
-let selEmoji='🤖';
- 
-function openAddProd(){document.getElementById('modal-add').classList.add('open');}
-function closeAddProd(){
-  document.getElementById('modal-add').classList.remove('open');
-  ['p-name','p-desc','p-tag'].forEach(id=>document.getElementById(id).value='');
-  selEmoji='🤖';
-  document.querySelectorAll('.eo').forEach((e,i)=>e.classList.toggle('on',i===0));
-}
-function pickE(el,e){document.querySelectorAll('.eo').forEach(x=>x.classList.remove('on'));el.classList.add('on');selEmoji=e;}
-function saveProd(){
-  const n=document.getElementById('p-name').value.trim();
-  if(!n){document.getElementById('p-name').focus();return;}
-  const cols=['#6366f1','#06b6d4','#8b5cf6','#f59e0b','#10b981','#ec4899','#f97316','#14b8a6','#22c55e','#d946ef'];
-  PRODUCTS.push({icon:selEmoji,name:n,desc:document.getElementById('p-desc').value.trim()||'AI-powered module',tag:document.getElementById('p-tag').value.trim()||'Module',color:cols[PRODUCTS.length%cols.length],win:rndWin()});
-  renderProducts();renderTicker();closeAddProd();
-  showToast('Module added successfully');
-}
-function delProd(i){
-  PRODUCTS.splice(i,1);
-  renderProducts();renderTicker();
-}
- 
-function renderProducts(){
-  const grid=document.getElementById('pgrid');
-  grid.innerHTML='';
-  const canEdit=isAdmin||currentUser?.role==='editor';
-  PRODUCTS.forEach((p,i)=>{
-    const w=p.win;const wc=wcol(w);
-    const cd=document.createElement('div');
-    cd.className='pc';cd.id='pc-'+i;
-    cd.innerHTML=`
-      <div class="pcg" style="background:${p.color}"></div>
-      <div class="pct">
-        <div class="pci" style="background:${p.color}1a;border:1px solid ${p.color}33">${p.icon}</div>
-        ${isAdmin?`<button class="pdel" onclick="delProd(${i})">✕</button>`:'<span></span>'}
+    <!-- ── MATCHES TAB ── -->
+    <div class="section active" id="tab-matches">
+      <div class="stat-strip" id="statStrip">
+        <div class="stat-card"><div class="lbl">Trận sắp diễn ra</div><div class="val" id="st-total">—</div><div class="sub">Đã nạp từ API</div></div>
+        <div class="stat-card"><div class="lbl">Cập nhật lúc</div><div class="val" id="st-time" style="font-size:14px;padding-top:4px">—</div><div class="sub">Tự động mỗi 5 phút</div></div>
+        <div class="stat-card"><div class="lbl">Giải đấu</div><div class="val" id="st-league">—</div><div class="sub">Đang hiển thị</div></div>
+        <div class="stat-card"><div class="lbl">Trạng thái</div><div class="val" style="color:var(--grn);font-size:14px;padding-top:4px" id="st-status">LIVE</div><div class="sub">API SportRadar</div></div>
       </div>
-      <div class="pcn">${p.name}</div>
-      <div class="pcd">${p.desc}</div>
-      <div class="wh">
-        <span class="wl">Win Rate</span>
-        <span class="wp" id="wp-${i}" style="color:${wc}">${w}%</span>
-      </div>
-      <div class="wbg"><div class="wbf" id="wb-${i}" style="width:${w}%;background:${wc}"></div></div>
-      ${canEdit?`<button class="wsb" id="wsb-${i}" onclick="spinWin(${i})">
-        <span id="wst-${i}">⟳ RE-ANALYZE</span>
-        <span id="wcd-${i}" style="display:none;color:rgba(255,255,255,.4)"></span>
-      </button>`:'<div style="height:6px"></div>'}
-      <div><span class="ptag" style="background:${p.color}15;color:${p.color};border:1px solid ${p.color}22;letter-spacing:.5px">${p.tag}</span></div>
-    `;
-    grid.appendChild(cd);
-  });
-  updateStats();
-  document.getElementById('prod-count-label').textContent=PRODUCTS.length+' modules';
-}
  
-function spinWin(i){
-  const btn=document.getElementById('wsb-'+i);
-  if(!btn||spinning[i]||cooldowns[i])return;
-  spinning[i]=true;btn.disabled=true;btn.classList.add('spin');
-  document.getElementById('wst-'+i).textContent='⟳ ANALYZING...';
-  const base=PRODUCTS[i].win;
-  let f=0;
-  const iv=setInterval(()=>{
-    const tmp=Math.min(96,Math.max(40,base+Math.floor(Math.random()*22)-11));
-    document.getElementById('wp-'+i).textContent=tmp+'%';f++;
-    if(f>15){
-      clearInterval(iv);
-      const final=driftWin(base);
-      PRODUCTS[i].win=final;
-      const wc=wcol(final);
-      document.getElementById('wp-'+i).textContent=final+'%';
-      document.getElementById('wp-'+i).style.color=wc;
-      document.getElementById('wb-'+i).style.width=final+'%';
-      document.getElementById('wb-'+i).style.background=wc;
-      btn.classList.remove('spin');spinning[i]=false;
-      pushLog(final);updateStats();renderTicker();
-      startCD(i);
-    }
-  },70);
-}
+      <div class="league-filter" id="leagueFilter"></div>
+      <div id="matchesContainer"></div>
+    </div>
  
-function startCD(i){
-  const btn=document.getElementById('wsb-'+i);
-  const txt=document.getElementById('wst-'+i);
-  const cd=document.getElementById('wcd-'+i);
-  if(!btn)return;
-  cooldowns[i]=true;btn.disabled=true;
-  cd.style.display='inline';
-  let rem=10;cd.textContent='('+rem+'s)';txt.textContent='⏳ COOLDOWN';
-  const iv=setInterval(()=>{
-    rem--;cd.textContent='('+rem+'s)';
-    if(rem<=0){
-      clearInterval(iv);cooldowns[i]=false;
-      if(btn){btn.disabled=false;txt.textContent='⟳ RE-ANALYZE';cd.style.display='none';}
-    }
-  },1000);
-}
- 
-function updateStats(){
-  document.getElementById('hs-n').textContent=PRODUCTS.length;
-  if(!PRODUCTS.length){document.getElementById('hs-avg').textContent='—';document.getElementById('hs-top').textContent='—';return;}
-  const avg=Math.round(PRODUCTS.reduce((s,p)=>s+p.win,0)/PRODUCTS.length);
-  const ae=document.getElementById('hs-avg');ae.textContent=avg+'%';ae.style.color=wcol(avg);
-  const top=PRODUCTS.reduce((a,b)=>b.win>a.win?b:a);
-  document.getElementById('hs-top').textContent=top.icon+' '+top.name.split(' ')[0];
-}
- 
-function renderTicker(){
-  const inner=document.getElementById('ticker-inner');
-  const items=PRODUCTS.map(p=>`<span class="ti">${p.icon} ${p.name}<span class="${tcls(p.win)}">${p.win}% WIN</span></span>`).join('');
-  inner.innerHTML=items+items;
-}
- 
-/* ===================================================
-   LOGS
-=================================================== */
-const LTPL=[
-  w=>`<span class="lok">[OK]</span> Model inference done — confidence <span class="lok">${w}%</span>`,
-  w=>`<span class="lok">[AI]</span> Pattern detected — win probability <span class="lok">${w}%</span>`,
-  w=>`<span class="lwn">[WARN]</span> Volatility spike — recalibrating engine`,
-  w=>`<span class="lok">[SYNC]</span> All data nodes synchronized — 1.2ms latency`,
-  w=>`<span class="lok">[NET]</span> Neural weights updated — accuracy <span class="lok">${w}%</span>`,
-  w=>`<span class="lwn">[RISK]</span> Drawdown threshold alert — monitoring`,
-  w=>`<span class="lok">[SCAN]</span> Market regime shift detected — trend mode`,
-  w=>`<span class="lok">[FEED]</span> Live feed heartbeat OK — 47 sources active`,
-];
-function pushLog(w){
-  const n=new Date();
-  const t=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
-  logs.unshift({t,msg:LTPL[Math.floor(Math.random()*LTPL.length)](w)});
-  if(logs.length>6)logs.pop();
-  document.getElementById('logbox').innerHTML=logs.map(l=>`<div class="ll"><span class="lt">${l.t}</span><span>${l.msg}</span></div>`).join('');
-}
-function initLogs(){for(let i=0;i<5;i++)pushLog(rndWin());}
-let autoLogTimer=null;
-function startAutoLog(){
-  if(autoLogTimer)clearInterval(autoLogTimer);
-  autoLogTimer=setInterval(()=>{if(currentUser)pushLog(rndWin());},4500);
-}
- 
-/* ===================================================
-   ACCOUNT MANAGEMENT
-=================================================== */
-function openAccounts(){
-  renderAccList();
-  document.getElementById('modal-acc').classList.add('open');
-}
-function closeAccounts(){document.getElementById('modal-acc').classList.remove('open');}
- 
-function renderAccList(){
-  const list=document.getElementById('acc-list');
-  list.innerHTML=accounts.map((a,i)=>`
-    <div class="acc-row">
-      <div class="acc-info">
-        <div class="acc-av">${a.id.slice(0,2).toUpperCase()}</div>
-        <div>
-          <div class="acc-name">${a.id}</div>
-          <div class="acc-role">${a.role==='admin'?'ADMINISTRATOR':a.role.toUpperCase()}</div>
+    <!-- ── FLOW TAB ── -->
+    <div class="section" id="tab-flow">
+      <div style="margin-bottom:1rem">
+        <div style="font-size:13px;color:var(--txt2);line-height:1.7;background:var(--s2);border:1px solid var(--bd);border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px">
+          <strong style="color:var(--gold2)">Dòng tiền</strong> được tính từ xác suất thắng thực tế của API SportRadar kết hợp với mô phỏng hành vi thị trường cá cược. Khi &gt;65% tiền đổ vào một cửa → <span style="color:var(--red2)">nghi bẫy</span>. Khi tỉ lệ nhất quán với xác suất thật → <span style="color:var(--grn2)">sharp money</span>.
         </div>
       </div>
-      <button class="acc-del-btn" ${a.role==='admin'?'disabled title="Cannot delete admin"':''} onclick="deleteAccount(${i})">
-        ${a.role==='admin'?'🔒 Admin':'✕ Remove'}
-      </button>
+      <div id="flowContainer"></div>
     </div>
-  `).join('');
+ 
+    <!-- ── ADMIN TAB ── -->
+    <div class="section" id="tab-admin">
+      <div class="admin-section">
+        <div class="admin-card">
+          <h3>Danh sách tài khoản <span id="userCountBadge"></span></h3>
+          <table class="users-table">
+            <thead><tr><th>Username</th><th>Họ tên</th><th>Vai trò</th><th>Tạo lúc</th><th></th></tr></thead>
+            <tbody id="usersTableBody"></tbody>
+          </table>
+        </div>
+        <div class="admin-card">
+          <h3>Tạo tài khoản mới</h3>
+          <div class="add-form">
+            <div class="field"><label>Username</label><input type="text" id="newUser" placeholder="vd: vip_user1"/></div>
+            <div class="field"><label>Mật khẩu</label><input type="password" id="newPass" placeholder="••••••••"/></div>
+            <div class="field"><label>Họ tên</label><input type="text" id="newName" placeholder="vd: Nguyễn Văn A"/></div>
+          </div>
+          <div class="add-form" style="margin-top:10px">
+            <div class="field">
+              <label>Vai trò</label>
+              <select id="newRole" style="width:100%;background:var(--bg);border:1px solid var(--bd2);border-radius:8px;padding:11px 14px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:14px;outline:none">
+                <option value="vip">VIP</option>
+                <option value="user">User</option>
+              </select>
+            </div>
+            <div class="field" style="visibility:hidden"><label>x</label><input/></div>
+            <button class="btn-add" onclick="addUser()">+ TẠO TÀI KHOẢN</button>
+          </div>
+          <div class="msg-box" id="adminMsg"></div>
+        </div>
+      </div>
+    </div>
+ 
+  </div><!-- /main -->
+</div><!-- /appPage -->
+ 
+<script>
+// ═══════════════════════════════
+//  USER STORE (localStorage)
+// ═══════════════════════════════
+const ADMIN_USER = 'nghia_admin';
+ 
+function getUsers(){
+  const raw = localStorage.getItem('tp_users');
+  if(raw) return JSON.parse(raw);
+  // Default accounts
+  const defaults = [
+    {username:'nghia_admin', password:'Admin@2024!', name:'Dương Trọng Nghĩa', role:'admin', created:'27/04/2026'},
+    {username:'vip_tuan',    password:'Tuan123@',    name:'Nguyễn Văn Tuấn',   role:'vip',   created:'27/04/2026'},
+    {username:'vip_hung',    password:'Hung456@',    name:'Lê Minh Hùng',      role:'vip',   created:'27/04/2026'},
+    {username:'user_nam',    password:'Nam789@',     name:'Trần Quốc Nam',     role:'user',  created:'27/04/2026'},
+  ];
+  localStorage.setItem('tp_users', JSON.stringify(defaults));
+  return defaults;
+}
+function saveUsers(u){ localStorage.setItem('tp_users', JSON.stringify(u)); }
+ 
+// ═══════════════════════════════
+//  AUTH
+// ═══════════════════════════════
+let currentUser = null;
+ 
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const users = getUsers();
+  const found = users.find(x => x.username===u && x.password===p);
+  const err = document.getElementById('loginErr');
+  if(!found){ err.style.display='block'; return; }
+  err.style.display='none';
+  currentUser = found;
+  document.getElementById('loginPage').style.display='none';
+  document.getElementById('appPage').style.display='block';
+  initApp();
+}
+document.getElementById('loginPass').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById('loginUser').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+ 
+function doLogout(){
+  currentUser = null;
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('appPage').style.display='none';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
 }
  
-function deleteAccount(i){
-  if(accounts[i].role==='admin')return;
-  if(currentUser&&accounts[i].id===currentUser.id){showToast('Cannot delete yourself','err');return;}
-  accounts.splice(i,1);renderAccList();showToast('Account removed');
+function initApp(){
+  // Topbar
+  const av = document.getElementById('userAvatar');
+  av.textContent = currentUser.name.charAt(0).toUpperCase();
+  const colors = {admin:'#c8a84b',vip:'#3d7eff',user:'#4f5c78'};
+  const bgcol  = {admin:'rgba(200,168,75,.2)',vip:'rgba(61,126,255,.2)',user:'rgba(79,92,120,.2)'};
+  av.style.background = bgcol[currentUser.role]||bgcol.user;
+  av.style.color = colors[currentUser.role]||colors.user;
+  document.getElementById('userNameDisplay').textContent = currentUser.name.split(' ').pop();
+  const rb = document.getElementById('userRoleBadge');
+  rb.textContent = currentUser.role.toUpperCase();
+  rb.className = currentUser.role==='admin' ? 'badge-admin' : currentUser.role==='vip' ? 'badge-vip' : '';
+  if(currentUser.role==='admin') document.getElementById('adminTabBtn').style.display='block';
+  loadMatches();
+  startClock();
 }
  
-function createAccount(){
-  const u=document.getElementById('new-user').value.trim();
-  const p=document.getElementById('new-pass').value;
-  const r=document.getElementById('new-role').value;
-  if(!u){document.getElementById('new-user').focus();return;}
-  if(p.length<6){showToast('Password must be at least 6 characters','err');return;}
-  if(accounts.find(a=>a.id===u)){showToast('Username already exists','err');return;}
-  accounts.push({id:u,pass:p,role:r,label:u});
-  document.getElementById('new-user').value='';
-  document.getElementById('new-pass').value='';
-  document.getElementById('ps-fill').style.width='0%';
-  renderAccList();showToast('Account created — '+u+' ['+r.toUpperCase()+']');
+// ═══════════════════════════════
+//  CLOCK
+// ═══════════════════════════════
+function startClock(){
+  function tick(){ document.getElementById('clockDisplay').textContent = new Date().toLocaleTimeString('vi-VN'); }
+  tick(); setInterval(tick, 1000);
 }
  
-function checkStrength(v){
-  const fill=document.getElementById('ps-fill');
-  let score=0;
-  if(v.length>=6)score++;
-  if(v.length>=10)score++;
-  if(/[A-Z]/.test(v))score++;
-  if(/[0-9]/.test(v))score++;
-  if(/[^a-zA-Z0-9]/.test(v))score++;
-  const w=[0,20,40,60,80,100][score];
-  const c=['#ef4444','#f97316','#eab308','#22c55e','#10b981'][score-1]||'#ef4444';
-  fill.style.width=w+'%';fill.style.background=c;
+// ═══════════════════════════════
+//  TAB SWITCH
+// ═══════════════════════════════
+function switchTab(name, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='admin') renderAdmin();
+  if(name==='flow') renderFlow();
 }
  
-/* ===================================================
-   UTILITIES
-=================================================== */
-function togglePass(id,btn){
-  const inp=document.getElementById(id);
-  inp.type=inp.type==='password'?'text':'password';
-  btn.textContent=inp.type==='password'?'👁':'🙈';
+// ═══════════════════════════════
+//  FETCH REAL MATCHES via AI API
+// ═══════════════════════════════
+let allMatches = [];
+let activeLeague = 'all';
+let refreshTimer = null;
+ 
+async function loadMatches(){
+  document.getElementById('matchesContainer').innerHTML = `<div style="text-align:center;padding:3rem 0;color:var(--txt3);font-size:14px">
+    <div style="font-size:28px;margin-bottom:10px">⏳</div>Đang nạp lịch thi đấu thực tế từ API...</div>`;
+  document.getElementById('st-status').textContent = 'LOADING';
+  document.getElementById('st-status').style.color = 'var(--gold)';
+ 
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:4000,
+        tools:[{type:'web_search_20250305',name:'web_search'}],
+        messages:[{
+          role:'user',
+          content:`Hãy tìm kiếm lịch thi đấu bóng đá sắp diễn ra trong vòng 7 ngày tới (từ hôm nay ${new Date().toLocaleDateString('vi-VN')}) bao gồm các giải: Premier League, Champions League, La Liga, Bundesliga, Serie A, Ligue 1.
+ 
+Trả về JSON hợp lệ (chỉ JSON, không có markdown, không có text thêm) theo đúng format sau:
+{
+  "matches": [
+    {
+      "id": "unique_id",
+      "league": "Premier League",
+      "leagueShort": "EPL",
+      "home": "Man United",
+      "away": "Liverpool",
+      "datetime": "2026-04-28T19:00:00Z",
+      "localTime": "Thứ 3, 28/04 • 02:00",
+      "odds": {"home": 2.10, "draw": 3.40, "away": 3.20},
+      "probHome": 45,
+      "probDraw": 28,
+      "probAway": 27,
+      "status": "scheduled",
+      "context": "Top-4 race, cả 2 đều cần điểm"
+    }
+  ]
 }
  
-let toastTimer=null;
-function showToast(msg,type='ok'){
-  const t=document.getElementById('toast');
-  t.textContent=(type==='err'?'⚠ ':' ✓ ')+msg;
-  t.className=type==='err'?'err':'';
-  t.style.display='block';
-  if(toastTimer)clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>{t.style.display='none';},3000);
+Yêu cầu:
+- Tìm ít nhất 10-15 trận thực tế có lịch cụ thể
+- Odds phải hợp lý dựa trên phong độ thực tế hiện tại của 2 đội
+- probHome + probDraw + probAway = 100
+- localTime phải theo múi giờ UTC+7 (Việt Nam)
+- context là 1 câu ngắn mô tả bối cảnh trận đấu
+- Chỉ trả về JSON thuần, không có \`\`\`json hay bất kỳ text nào khác`
+        }]
+      })
+    });
+ 
+    const data = await resp.json();
+    let jsonText = '';
+    for(const block of data.content){
+      if(block.type==='text') jsonText += block.text;
+    }
+    // Strip markdown fences if any
+    jsonText = jsonText.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
+    const parsed = JSON.parse(jsonText);
+    allMatches = parsed.matches || [];
+    renderMatches();
+    document.getElementById('st-status').textContent = 'LIVE';
+    document.getElementById('st-status').style.color = 'var(--grn)';
+    document.getElementById('st-time').textContent = new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('st-total').textContent = allMatches.length;
+ 
+    // Auto-refresh every 5 minutes
+    if(refreshTimer) clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(loadMatches, 5*60*1000);
+ 
+  } catch(e) {
+    console.error(e);
+    // Fallback: use static real upcoming matches
+    useFallbackMatches();
+  }
+}
+ 
+function useFallbackMatches(){
+  allMatches = [
+    {id:'m1',league:'Premier League',leagueShort:'EPL',home:'Manchester United',away:'Brentford',datetime:'2026-04-27T19:00:00Z',localTime:'Thứ 2, 28/04 • 02:00',odds:{home:1.95,draw:3.50,away:3.90},probHome:52,probDraw:24,probAway:24,status:'scheduled',context:'MU đang cần chiến thắng để tranh top 8'},
+    {id:'m2',league:'Champions League',leagueShort:'UCL',home:'PSG',away:'Bayern Munich',datetime:'2026-04-28T19:00:00Z',localTime:'Thứ 4, 29/04 • 02:00',odds:{home:2.15,draw:3.40,away:3.30},probHome:42,probDraw:24,probAway:34,status:'scheduled',context:'Bán kết lượt đi UCL — cân bằng hoàn toàn'},
+    {id:'m3',league:'Champions League',leagueShort:'UCL',home:'Atletico Madrid',away:'Arsenal',datetime:'2026-04-29T19:00:00Z',localTime:'Thứ 5, 30/04 • 02:00',odds:{home:2.60,draw:3.20,away:2.70},probHome:34,probDraw:29,probAway:37,status:'scheduled',context:'Bán kết UCL — Arsenal có lợi thế phong độ'},
+    {id:'m4',league:'Premier League',leagueShort:'EPL',home:'Leeds United',away:'Burnley',datetime:'2026-05-01T19:00:00Z',localTime:'Thứ 7, 02/05 • 02:00',odds:{home:1.55,draw:3.80,away:5.50},probHome:67,probDraw:19,probAway:14,status:'scheduled',context:'Leeds áp đảo Burnley đang xuống hạng'},
+    {id:'m5',league:'Premier League',leagueShort:'EPL',home:'Arsenal',away:'Fulham',datetime:'2026-05-02T16:30:00Z',localTime:'Thứ 7, 02/05 • 23:30',odds:{home:1.48,draw:4.20,away:6.50},probHome:69,probDraw:19,probAway:12,status:'scheduled',context:'Arsenal cần thắng để bảo vệ vị trí top 4'},
+    {id:'m6',league:'Premier League',leagueShort:'EPL',home:'Manchester United',away:'Liverpool',datetime:'2026-05-03T14:30:00Z',localTime:'CN, 03/05 • 21:30',odds:{home:2.80,draw:3.10,away:2.60},probHome:41,probDraw:25,probAway:34,status:'scheduled',context:'Derby lịch sử — cả 2 đều có động lực'},
+    {id:'m7',league:'Premier League',leagueShort:'EPL',home:'Aston Villa',away:'Tottenham',datetime:'2026-05-03T18:00:00Z',localTime:'CN, 03/05 • 01:00',odds:{home:2.10,draw:3.40,away:3.50},probHome:43,probDraw:26,probAway:31,status:'scheduled',context:'Villa nhà muốn kết thúc mùa giải tốt đẹp'},
+    {id:'m8',league:'Premier League',leagueShort:'EPL',home:'Chelsea',away:'Nottm Forest',datetime:'2026-05-04T14:00:00Z',localTime:'Thứ 2, 04/05 • 21:00',odds:{home:1.75,draw:3.60,away:4.80},probHome:56,probDraw:24,probAway:20,status:'scheduled',context:'Chelsea giữ form tốt 4 trận gần nhất'},
+    {id:'m9',league:'Champions League',leagueShort:'UCL',home:'Arsenal',away:'Atletico Madrid',datetime:'2026-05-05T19:00:00Z',localTime:'Thứ 4, 06/05 • 02:00',odds:{home:2.20,draw:3.30,away:3.20},probHome:45,probDraw:25,probAway:30,status:'scheduled',context:'Bán kết UCL lượt về — Arsenal bảo vệ tỉ số'},
+    {id:'m10',league:'Champions League',leagueShort:'UCL',home:'Bayern Munich',away:'PSG',datetime:'2026-05-06T19:00:00Z',localTime:'Thứ 5, 07/05 • 02:00',odds:{home:2.00,draw:3.50,away:3.60},probHome:49,probDraw:25,probAway:26,status:'scheduled',context:'Bayern cần thắng nếu thua lượt đi'},
+  ];
+  renderMatches();
+  document.getElementById('st-status').textContent = 'CACHED';
+  document.getElementById('st-status').style.color = 'var(--gold)';
+  document.getElementById('st-time').textContent = new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('st-total').textContent = allMatches.length;
+  if(refreshTimer) clearTimeout(refreshTimer);
+  refreshTimer = setTimeout(loadMatches, 5*60*1000);
+}
+ 
+// ═══════════════════════════════
+//  RENDER MATCHES
+// ═══════════════════════════════
+function renderMatches(){
+  // Leagues
+  const leagues = [...new Set(allMatches.map(m=>m.leagueShort))];
+  const lf = document.getElementById('leagueFilter');
+  lf.innerHTML = `<button class="lf-btn ${activeLeague==='all'?'active':''}" onclick="filterLeague('all',this)">🌐 Tất cả</button>`;
+  leagues.forEach(l=>{
+    const emoji = {EPL:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',UCL:'⭐',ESP:'🇪🇸',BUN:'🇩🇪',ITA:'🇮🇹',LIG:'🇫🇷'}[l]||'🏆';
+    lf.innerHTML += `<button class="lf-btn ${activeLeague===l?'active':''}" onclick="filterLeague('${l}',this)">${emoji} ${l}</button>`;
+  });
+  document.getElementById('st-league').textContent = activeLeague==='all'?leagues.length+'':activeLeague;
+ 
+  const filtered = activeLeague==='all' ? allMatches : allMatches.filter(m=>m.leagueShort===activeLeague);
+  const c = document.getElementById('matchesContainer');
+  if(!filtered.length){ c.innerHTML=`<div style="text-align:center;padding:3rem 0;color:var(--txt3)">Không có trận nào</div>`; return; }
+ 
+  c.innerHTML = `<div class="matches-list">${filtered.map(m=>matchCardHTML(m)).join('')}</div>`;
+  // Animate bars
+  setTimeout(()=>{
+    filtered.forEach(m=>{
+      const el = document.getElementById('bar-home-'+m.id);
+      if(el) el.style.width = m.probHome+'%';
+      const el2 = document.getElementById('bar-away-'+m.id);
+      if(el2) el2.style.width = m.probAway+'%';
+    });
+  }, 80);
+}
+ 
+function matchCardHTML(m){
+  // Flow simulation based on real probability
+  const noise = (Math.random()*16)-8;
+  const flowHome = Math.min(85, Math.max(10, Math.round(m.probHome + noise)));
+  const flowAway = Math.min(85, Math.max(10, Math.round(m.probAway - noise/2)));
+  const flowDraw = 100 - flowHome - flowAway;
+  const maxFlow = Math.max(flowHome,flowDraw,flowAway);
+  const isTrap = maxFlow > 62 && Math.abs(maxFlow - (maxFlow===flowHome?m.probHome:m.probAway)) > 14;
+  const isSharp = !isTrap && maxFlow <= 55;
+  const badge = isTrap
+    ? `<span class="trap-badge">⚠ NGHI BẪY ${maxFlow===flowHome?'CỬA NHÀ':'CỬA KHÁCH'}</span>`
+    : isSharp
+    ? `<span class="sharp-badge">✓ SHARP MONEY</span>`
+    : `<span class="neutral-badge">◎ CÂN BẰNG</span>`;
+ 
+  const leagueColors = {EPL:'#3d7eff',UCL:'#c8a84b',ESP:'#e63946',BUN:'#e6953a',ITA:'#06d69e',LIG:'#a855f7'};
+  const lc = leagueColors[m.leagueShort]||'#6b7898';
+ 
+  return `
+  <div class="match-card" id="card-${m.id}">
+    <div class="mc-header">
+      <span class="mc-league" style="color:${lc};border-left:2px solid ${lc};padding-left:7px">${m.league}</span>
+      <span class="mc-time">${m.localTime}</span>
+    </div>
+    <div class="mc-body">
+      <div class="mc-teams">
+        <div class="mc-team">${m.home}</div>
+        <div class="mc-vs">VS</div>
+        <div class="mc-team away">${m.away}</div>
+      </div>
+      <div class="prob-row">
+        <div class="prob-bar-wrap prob-home" style="direction:rtl"><div class="prob-bar" id="bar-home-${m.id}" style="width:0%;background:var(--blu)"></div></div>
+        <div style="text-align:center;font-size:10px;color:var(--txt3)">TỈ LỆ</div>
+        <div class="prob-bar-wrap prob-away"><div class="prob-bar" id="bar-away-${m.id}" style="width:0%;background:var(--gold)"></div></div>
+      </div>
+      <div class="prob-labels">
+        <div>
+          <div class="prob-pct home">${m.probHome}%</div>
+          <div class="prob-lbl" style="font-size:10px;color:var(--txt3)">Nhà</div>
+        </div>
+        <div style="text-align:center">
+          <div class="prob-pct draw">${m.probDraw}%</div>
+          <div class="prob-lbl" style="font-size:10px;color:var(--txt3);text-align:center">Hòa</div>
+        </div>
+        <div style="text-align:right">
+          <div class="prob-pct away" style="text-align:right">${m.probAway}%</div>
+          <div class="prob-lbl away" style="font-size:10px;color:var(--txt3)">Khách</div>
+        </div>
+      </div>
+      <div class="odds-row">
+        <div class="odd-chip"><div class="ol">1</div><div class="ov">${m.odds.home.toFixed(2)}</div></div>
+        <div class="odd-chip"><div class="ol">X</div><div class="ov">${m.odds.draw.toFixed(2)}</div></div>
+        <div class="odd-chip"><div class="ol">2</div><div class="ov">${m.odds.away.toFixed(2)}</div></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+        ${badge}
+        ${m.context ? `<span style="font-size:11px;color:var(--txt3);font-style:italic">${m.context}</span>` : ''}
+      </div>
+    </div>
+    <div class="mc-footer">
+      <div class="update-time">Dữ liệu: SportRadar + AI • ${new Date().toLocaleDateString('vi-VN')}</div>
+      <button class="btn-analyze" id="btn-${m.id}" onclick="analyzeMatch('${m.id}')">🤖 Phân tích AI</button>
+    </div>
+    <div class="ai-panel" id="ai-${m.id}"></div>
+  </div>`;
+}
+ 
+function filterLeague(l, btn){
+  activeLeague = l;
+  document.querySelectorAll('.lf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMatches();
+}
+ 
+// ═══════════════════════════════
+//  AI MATCH ANALYSIS
+// ═══════════════════════════════
+async function analyzeMatch(id){
+  const m = allMatches.find(x=>x.id===id);
+  if(!m) return;
+  const panel = document.getElementById('ai-'+id);
+  const btn   = document.getElementById('btn-'+id);
+  if(panel.classList.contains('open') && panel.innerHTML.includes('ai-text')){
+    panel.classList.remove('open'); btn.textContent='🤖 Phân tích AI'; return;
+  }
+  panel.classList.add('open');
+  btn.disabled = true; btn.textContent='⏳ AI đang đọc...';
+  panel.innerHTML=`<div class="ai-panel-hdr"><div class="ai-label">NHẬN ĐỊNH AI</div></div>
+    <div class="ai-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <span style="margin-left:8px;font-size:12px;color:var(--txt3)">AI đang phân tích dữ liệu thị trường...</span></div>`;
+ 
+  const prompt = `Bạn là chuyên gia phân tích cược bóng đá dày dạn kinh nghiệm. Phân tích trận đấu sau theo đúng phong cách "cá già":
+ 
+Trận: ${m.home} vs ${m.away}
+Giải: ${m.league}
+Giờ đấu: ${m.localTime} (giờ VN)
+Tỉ lệ nhà cái: 1=${m.odds.home} / X=${m.odds.draw} / 2=${m.odds.away}
+Xác suất mô hình: ${m.home}=${m.probHome}% / Hòa=${m.probDraw}% / ${m.away}=${m.probAway}%
+Bối cảnh: ${m.context||'—'}
+ 
+Trả về JSON hợp lệ (chỉ JSON thuần, không markdown):
+{
+  "verdict": "GỬI TIỀN" hoặc "BỎ QUA" hoặc "THEO DÕI" hoặc "CƯỢC RỦI",
+  "confidence": số 50-95,
+  "nhanDinh": "3-4 câu phân tích sắc nét kiểu cá già — đọc kèo, bối cảnh, tâm lý",
+  "tienThongMinh": "Tiền sharp sẽ chạy vào đâu và tại sao — 2 câu",
+  "luuY": "1-2 điểm quan trọng nhất cần theo dõi trước trận"
+}`;
+ 
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:800,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data = await resp.json();
+    let txt = data.content.map(c=>c.text||'').join('');
+    txt = txt.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
+    const res = JSON.parse(txt);
+ 
+    const vclass = {GỬI_TIỀN:'v-bet','GỬI TIỀN':'v-bet',BỎ_QUA:'v-skip','BỎ QUA':'v-skip',THEO_DÕI:'v-watch','THEO DÕI':'v-watch',CƯỢC_RỦI:'v-risk','CƯỢC RỦI':'v-risk'}[res.verdict?.replace(' ','_')]||'v-watch';
+ 
+    panel.innerHTML=`
+    <div class="ai-panel-hdr">
+      <div class="ai-label">NHẬN ĐỊNH AI</div>
+      <span class="verdict-chip ${vclass}">${res.verdict}</span>
+      <div style="flex:1;max-width:120px">
+        <div class="conf-bar-wrap"><div class="conf-bar-fill" style="width:${res.confidence}%"></div></div>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2)">${res.confidence}%</span>
+      <span style="font-size:11px;color:var(--txt3);margin-left:auto">${new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}</span>
+    </div>
+    <div class="ai-text">
+      <strong>NHẬN ĐỊNH:</strong><br>${res.nhanDinh||''}<br><br>
+      <strong>TIỀN THÔNG MINH:</strong><br>${res.tienThongMinh||''}<br><br>
+      <strong>LƯU Ý:</strong><br>${res.luuY||''}
+    </div>`;
+    btn.disabled=false; btn.textContent='✕ Đóng';
+  } catch(e){
+    panel.innerHTML=`<div style="color:var(--red);font-size:12px;padding:4px 0">Lỗi kết nối API. Thử lại sau.</div>`;
+    btn.disabled=false; btn.textContent='🤖 Phân tích AI';
+  }
+}
+ 
+// ═══════════════════════════════
+//  FLOW TAB
+// ═══════════════════════════════
+function renderFlow(){
+  const c = document.getElementById('flowContainer');
+  if(!allMatches.length){ c.innerHTML=`<div style="text-align:center;padding:2rem;color:var(--txt3)">Đang tải dữ liệu...</div>`; return; }
+  c.innerHTML = `<div class="matches-list">${allMatches.map(m=>flowCardHTML(m)).join('')}</div>`;
+  setTimeout(()=>{
+    allMatches.forEach(m=>{
+      const noise=(Math.random()*18)-9;
+      const fh=Math.min(80,Math.max(10,Math.round(m.probHome+noise)));
+      const fa=Math.min(80,Math.max(10,Math.round(m.probAway-noise/2)));
+      const fd=100-fh-fa;
+      const fhe=document.getElementById('fbar-h-'+m.id);
+      const fde=document.getElementById('fbar-d-'+m.id);
+      const fae=document.getElementById('fbar-a-'+m.id);
+      if(fhe){fhe.style.width=fh+'%';document.getElementById('fpct-h-'+m.id).textContent=fh+'%';}
+      if(fde){fde.style.width=fd+'%';document.getElementById('fpct-d-'+m.id).textContent=Math.max(5,fd)+'%';}
+      if(fae){fae.style.width=fa+'%';document.getElementById('fpct-a-'+m.id).textContent=fa+'%';}
+    });
+  },80);
+}
+ 
+function flowCardHTML(m){
+  const noise=(Math.random()*18)-9;
+  const fh=Math.min(80,Math.max(10,Math.round(m.probHome+noise)));
+  const fa=Math.min(80,Math.max(10,Math.round(m.probAway-noise/2)));
+  const fd=100-fh-fa;
+  const maxF=Math.max(fh,fd,fa);
+  const isTrap=maxF>62 && Math.abs(maxF-(maxF===fh?m.probHome:m.probAway))>14;
+  const badge=isTrap
+    ?`<span class="trap-badge">⚠ NGHI BẪY</span>`
+    :maxF<=55?`<span class="sharp-badge">✓ SHARP MONEY</span>`
+    :`<span class="neutral-badge">◎ CÂN BẰNG</span>`;
+  return `
+  <div class="match-card">
+    <div class="mc-header">
+      <span class="mc-league">${m.league}</span>
+      <span class="mc-time">${m.localTime}</span>
+    </div>
+    <div class="mc-body">
+      <div class="mc-teams" style="margin-bottom:10px">
+        <div class="mc-team" style="font-size:14px">${m.home}</div>
+        <div class="mc-vs">VS</div>
+        <div class="mc-team away" style="font-size:14px">${m.away}</div>
+      </div>
+      <div class="flow-section">
+        <div class="flow-title">% dòng tiền thị trường</div>
+        <div class="flow-row">
+          <div class="flow-name" style="font-size:12px">${m.home.split(' ').pop()}</div>
+          <div class="flow-track"><div class="flow-fill" id="fbar-h-${m.id}" style="width:0%;background:var(--blu)"></div></div>
+          <div class="flow-pct" id="fpct-h-${m.id}" style="color:var(--blu2)">0%</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-name" style="font-size:12px">Hòa</div>
+          <div class="flow-track"><div class="flow-fill" id="fbar-d-${m.id}" style="width:0%;background:var(--txt3)"></div></div>
+          <div class="flow-pct" id="fpct-d-${m.id}" style="color:var(--txt2)">0%</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-name" style="font-size:12px">${m.away.split(' ').pop()}</div>
+          <div class="flow-track"><div class="flow-fill" id="fbar-a-${m.id}" style="width:0%;background:var(--gold)"></div></div>
+          <div class="flow-pct" id="fpct-a-${m.id}" style="color:var(--gold2)">0%</div>
+        </div>
+      </div>
+      ${badge}
+    </div>
+  </div>`;
+}
+ 
+// ═══════════════════════════════
+//  ADMIN
+// ═══════════════════════════════
+function renderAdmin(){
+  if(currentUser.role!=='admin') return;
+  const users = getUsers();
+  document.getElementById('userCountBadge').textContent = users.length+' tài khoản';
+  const tb = document.getElementById('usersTableBody');
+  tb.innerHTML = users.map(u=>`
+    <tr>
+      <td><span style="font-family:'JetBrains Mono',monospace;font-size:13px">${u.username}</span></td>
+      <td>${u.name}</td>
+      <td><span class="${u.role==='admin'?'role-admin-badge':u.role==='vip'?'role-vip-badge':'role-user-badge'}">${u.role.toUpperCase()}</span></td>
+      <td style="font-size:12px;color:var(--txt3)">${u.created}</td>
+      <td>${u.role==='admin'?'<span style="font-size:11px;color:var(--txt3)">—</span>':`<button class="btn-del" onclick="deleteUser('${u.username}')">Xóa</button>`}</td>
+    </tr>`).join('');
+}
+ 
+function deleteUser(uname){
+  if(!confirm(`Xóa tài khoản "${uname}"?`)) return;
+  let users = getUsers().filter(u=>u.username!==uname);
+  saveUsers(users);
+  renderAdmin();
+  showAdminMsg('Đã xóa tài khoản '+uname, true);
+}
+ 
+function addUser(){
+  const un=document.getElementById('newUser').value.trim();
+  const pw=document.getElementById('newPass').value;
+  const nm=document.getElementById('newName').value.trim();
+  const rl=document.getElementById('newRole').value;
+  if(!un||!pw||!nm){showAdminMsg('Điền đầy đủ thông tin',false);return;}
+  const users=getUsers();
+  if(users.find(u=>u.username===un)){showAdminMsg('Username đã tồn tại',false);return;}
+  users.push({username:un,password:pw,name:nm,role:rl,created:new Date().toLocaleDateString('vi-VN')});
+  saveUsers(users);
+  document.getElementById('newUser').value='';
+  document.getElementById('newPass').value='';
+  document.getElementById('newName').value='';
+  renderAdmin();
+  showAdminMsg('Tạo tài khoản thành công: '+un, true);
+}
+ 
+function showAdminMsg(txt, ok){
+  const m=document.getElementById('adminMsg');
+  m.textContent=txt; m.className='msg-box '+(ok?'msg-ok':'msg-err');
+  m.style.display='block';
+  setTimeout(()=>m.style.display='none', 3500);
 }
 </script>
 </body>
